@@ -22,11 +22,7 @@ import javafx.stage.Stage;
 
 public class FXMLPersonalInfo implements Initializable {
     
-    @FXML
-    private Button helloButton;
-    @FXML
-    private Label ourLabel;
-    @FXML
+   
     private void printHello(ActionEvent e) throws IOException
        {
 
