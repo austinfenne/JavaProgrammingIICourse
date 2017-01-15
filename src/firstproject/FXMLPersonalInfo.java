@@ -29,9 +29,8 @@ public class FXMLPersonalInfo implements Initializable {
     @FXML
     private void printHello(ActionEvent e) throws IOException
        {
-           System.out.println("Hello World!");
-           ourLabel.setText("Hello World");
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLHomePage.fxml"));
+
+           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLOnlinePrecense.fxml"));
            Scene home_page_scene = new Scene(home_page_parent);
            Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
            app_stage.setScene(home_page_scene);
