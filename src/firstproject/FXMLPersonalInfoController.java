@@ -32,7 +32,7 @@ public class FXMLPersonalInfoController implements Initializable {
            Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
            app_stage.setScene(home_page_scene);
            app_stage.show();
-           System.out.println("test");
+          
        }
     
     @Override
