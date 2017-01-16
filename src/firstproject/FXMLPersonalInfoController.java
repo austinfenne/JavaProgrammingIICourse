@@ -16,18 +16,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
-public class FXMLPersonalInfo implements Initializable {
+public class FXMLPersonalInfoController implements Initializable {
     
     @FXML
-    private Button helloButton;
+    private Button nextButton;
     @FXML
-    private Label ourLabel;
-    @FXML
-    private void printHello(ActionEvent e) throws IOException
+    private void nextPage(ActionEvent e) throws IOException
        {
 
            Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLOnlinePrecense.fxml"));
@@ -35,6 +32,7 @@ public class FXMLPersonalInfo implements Initializable {
            Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
            app_stage.setScene(home_page_scene);
            app_stage.show();
+           System.out.println("test");
        }
     
     @Override
