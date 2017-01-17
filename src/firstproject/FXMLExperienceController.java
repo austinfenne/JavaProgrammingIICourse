@@ -43,7 +43,7 @@ public class FXMLExperienceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        labels.setText("Hello World");
+        labels.setText();
         NextBtn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
