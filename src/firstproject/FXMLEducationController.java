@@ -34,7 +34,7 @@ public class FXMLEducationController implements Initializable {
         public void nextPage(ActionEvent e) throws IOException
        {
 
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));//change this to next page when complete
+           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLEducation.fxml"));//change this to next page when complete
            Scene home_page_scene = new Scene(home_page_parent);
            Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
            app_stage.setScene(home_page_scene);
