@@ -5,19 +5,16 @@
  */
 package firstproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.fxml.FXML;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -27,11 +24,17 @@ import javafx.stage.Stage;
 public class FXMLExperienceController implements Initializable {
 
     @FXML
-    private Label labels;
-    @FXML
     private Button NextBtn;
     @FXML
-    private Parent root;
+    public void nextPage(ActionEvent e) throws IOException
+           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLEducation.fxml"));
+           Scene home_page_scene = new Scene(home_page_parent);
+           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+           app_stage.setScene(home_page_scene);
+           app_stage.show();
+        
+    //@FXML
+    //private Parent root;
 
     /**
      * Initializes the controller class.
@@ -48,6 +51,6 @@ public class FXMLExperienceController implements Initializable {
                 System.out.println("Hello World");
             }
         });
-        Scene scene = new Scene(root, 500, 300);
+        //Scene scene = new Scene(root, 500, 300);
     }
 }
