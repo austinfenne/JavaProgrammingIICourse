@@ -9,6 +9,6 @@
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLOnlinePrecenseController">
    <children>
       <Label layoutX="457.0" layoutY="141.0" prefHeight="31.0" prefWidth="543.0" text="My Online Presence" />
-      <Button fx:id="nextButton" layoutX="1129.0" layoutY="713.0" mnemonicParsing="false" onAction="#nextPage" text="Next" />
+      <Button fx:id="nextButton" layoutX="929.0" layoutY="439.0" mnemonicParsing="false" onAction="#nextPage" text="Next" />
    </children>
 </AnchorPane>

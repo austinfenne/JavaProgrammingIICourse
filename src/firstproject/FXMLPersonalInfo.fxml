@@ -21,7 +21,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="nextButton" layoutX="1201.0" layoutY="747.0" mnemonicParsing="false" onAction="#nextPage" text="Next" />
+      <Button fx:id="nextButton" layoutX="1150.0" layoutY="663.0" mnemonicParsing="false" onAction="#nextPage" text="Next" />
       <Label layoutX="546.0" layoutY="272.0" text="Contact Info">
          <font>
             <Font size="48.0" />
