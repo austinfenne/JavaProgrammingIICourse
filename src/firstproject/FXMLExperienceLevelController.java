@@ -6,7 +6,28 @@
 package firstproject;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +37,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -25,20 +47,71 @@ import javafx.stage.Stage;
  */
 public class FXMLExperienceLevelController implements Initializable {
 
+    @FXML private Button nextButton;
+    @FXML private Button studentButton;
+    @FXML private Label error;
+    @FXML private Button entrylevelButton;
+    @FXML private Button experiencedButton;
+    @FXML private Button managerButton;
+    @FXML private Button executiveButton;
+    @FXML private String experience;
+    
     @FXML
-    private Button nextButton;
-    @FXML
-        private void nextPage(ActionEvent e) throws IOException
+    private void nextPage(ActionEvent e) throws IOException
        {
-
+           
            Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));
            Scene home_page_scene = new Scene(home_page_parent);
            Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
            app_stage.setScene(home_page_scene);
            app_stage.show();
-          
+           
+           
        }
-    @Override
+     
+    private void database(){
+            String query = "INSERT INTO level (EXPERIENCE) VALUES (" + "'" + experience +  "');";
+            insertStatement(query);
+    }
+    
+       private void clickedStudent(ActionEvent event) throws IOException {
+          experience = "student";
+       }
+       private void clickedEntrylevel(ActionEvent event) throws IOException {
+           experience = "Entrylevel";
+       }
+       private void clickedExperienced(ActionEvent event) throws IOException {
+           experience = "Experienced";
+       }
+       private void clickedManager(ActionEvent event) throws IOException {
+           experience = "Manager";
+       }
+       private void clickedExecutive(ActionEvent event) throws IOException{
+           experience = "Executive";
+       }
+    
+    private void insertStatement(String insert_query){
+        
+    Connection c = null;
+    Statement stmt = null;
+    try {
+      Class.forName("org.sqlite.JDBC");
+      c = DriverManager.getConnection("jdbc:sqlite:first.db");
+      c.setAutoCommit(false);
+      System.out.println("Opened database successfully");
+      stmt = c.createStatement(); 
+      System.out.println("Our query was: " + insert_query);
+      stmt.executeUpdate(insert_query);
+      stmt.close();
+      c.commit();
+      c.close();
+    }catch ( Exception e ) {
+                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                System.exit(0);  
+        }
+    }
+
+////    @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
