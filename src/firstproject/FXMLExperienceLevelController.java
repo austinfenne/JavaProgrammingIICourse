@@ -59,7 +59,7 @@ public class FXMLExperienceLevelController implements Initializable {
     @FXML
     private void nextPage(ActionEvent e) throws IOException
        {
-           
+           database();
            Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));
            Scene home_page_scene = new Scene(home_page_parent);
            Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -74,19 +74,20 @@ public class FXMLExperienceLevelController implements Initializable {
             insertStatement(query);
     }
     
-       private void clickedStudent(ActionEvent event) throws IOException {
+    
+    @FXML   private void clickedStudent(ActionEvent event) throws IOException {
           experience = "student";
        }
-       private void clickedEntrylevel(ActionEvent event) throws IOException {
+    @FXML  private void clickedEntrylevel(ActionEvent event) throws IOException {
            experience = "Entrylevel";
        }
-       private void clickedExperienced(ActionEvent event) throws IOException {
+    @FXML   private void clickedExperienced(ActionEvent event) throws IOException {
            experience = "Experienced";
        }
-       private void clickedManager(ActionEvent event) throws IOException {
+    @FXML   private void clickedManager(ActionEvent event) throws IOException {
            experience = "Manager";
        }
-       private void clickedExecutive(ActionEvent event) throws IOException{
+    @FXML   private void clickedExecutive(ActionEvent event) throws IOException{
            experience = "Executive";
        }
     

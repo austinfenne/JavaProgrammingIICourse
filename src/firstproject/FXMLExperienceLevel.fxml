@@ -16,7 +16,7 @@
          </font></Label>
       <Button fx:id="studentButton" layoutX="31.0" layoutY="303.0" mnemonicParsing="false" onAction="#clickedStudent" prefHeight="138.0" prefWidth="207.0" text="Student" />
       <Button fx:id="entrylevelButton" layoutX="264.0" layoutY="303.0" mnemonicParsing="false" onAction="#clickedEntrylevel" prefHeight="138.0" prefWidth="207.0" text="Entry Level" />
-      <Button fx:id="experiencedButton" layoutX="495.0" layoutY="303.0" mnemonicParsing="false" onAction="#clickedEntrylevel" prefHeight="138.0" prefWidth="218.0" text="Experienced" />
+      <Button fx:id="experiencedButton" layoutX="495.0" layoutY="303.0" mnemonicParsing="false" onAction="#clickedExperienced" prefHeight="138.0" prefWidth="218.0" text="Experienced" />
       <Button fx:id="managerButton" layoutX="733.0" layoutY="303.0" mnemonicParsing="false" onAction="#clickedManager" prefHeight="138.0" prefWidth="241.0" text="Manager" />
       <Button fx:id="executiveButton" layoutX="991.0" layoutY="303.0" mnemonicParsing="false" onAction="#clickedExecutive" prefHeight="138.0" prefWidth="207.0" text="Executive" />
       <Label fx:id="error" layoutX="619.0" layoutY="518.0" textFill="RED" />
