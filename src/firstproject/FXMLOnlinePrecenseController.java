@@ -47,10 +47,10 @@ public class FXMLOnlinePrecenseController implements Initializable {
           
            
            
-             //     String query = "INSERT INTO onlineprecense (WWW,TWITTER,LINKEDIN) VALUES (" + "'" + www.getText() + 
-             //   "'," + "'" + twitter.getText() + "'," + "'" + linkedin.getText() + "');";
+                String query = "INSERT INTO onlineprecense (WWW,TWITTER,LINKEDIN) VALUES (" + "'" + www.getText() + 
+                "'," + "'" + twitter.getText() + "'," + "'" + linkedin.getText() + "');";
            
-         //  insertStatement(query);
+                insertStatement(query);
                     
        }
      

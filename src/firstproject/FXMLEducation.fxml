@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="firstproject.FXMLEducationController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLEducationController">
    <children>
       <Label layoutX="88.0" layoutY="94.0" text="Institution" />
-      <TextField layoutX="88.0" layoutY="144.0" />
+      <TextField fx:id="txtSchool" layoutX="88.0" layoutY="144.0" />
       <Label layoutX="88.0" layoutY="227.0" text="Degree or Area of Study" />
-      <TextField layoutX="88.0" layoutY="274.0" />
+      <TextField fx:id="txtStudy" layoutX="88.0" layoutY="274.0" />
       <Label layoutX="88.0" layoutY="352.0" text="Start Date" />
-      <DatePicker layoutX="88.0" layoutY="400.0" />
+      <DatePicker fx:id="dpStart" layoutX="88.0" layoutY="400.0" />
       <Label layoutX="88.0" layoutY="487.0" text="End Date" />
-      <DatePicker layoutX="88.0" layoutY="542.0" />
+      <DatePicker fx:id="dpEnd" layoutX="88.0" layoutY="542.0" />
+      <Button fx:id="add" layoutX="351.0" layoutY="614.0" mnemonicParsing="false" onAction="#addEd" text="Add" />
       <Button fx:id="nextButton" layoutX="969.0" layoutY="614.0" mnemonicParsing="false" onAction="#nextPage" text="Next" />
-      <Button fx:id="add" layoutX="549.0" layoutY="542.0" mnemonicParsing="false" text="Add" />
       <Button fx:id="previous" layoutX="90.0" layoutY="614.0" mnemonicParsing="false" onAction="#prevPage" text="Previous" />
+      <Label fx:id="schoolErr" layoutX="455.0" layoutY="152.0" textFill="RED" />
+      <Label fx:id="studyErr" layoutX="455.0" layoutY="282.0" textFill="RED" />
+      <Label fx:id="startDateErr" layoutX="455.0" layoutY="408.0" textFill="RED" />
+      <Label fx:id="endDateErr" layoutX="455.0" layoutY="550.0" textFill="RED" />
    </children>
 </AnchorPane>

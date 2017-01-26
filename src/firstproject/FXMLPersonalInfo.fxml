@@ -9,13 +9,13 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLPersonalInfoController">
    <children>
-      <TextField layoutX="136.0" layoutY="81.0" prefHeight="39.0" prefWidth="1096.0" />
+      <TextField fx:id="fName" layoutX="136.0" layoutY="81.0" prefHeight="39.0" prefWidth="1096.0" />
       <Label layoutX="37.0" layoutY="87.0" text="First Name:" />
       <Label layoutX="37.0" layoutY="148.0" text="Last Name:" />
-      <TextField layoutX="136.0" layoutY="142.0" prefHeight="39.0" prefWidth="1096.0" />
+      <TextField fx:id="lName" layoutX="136.0" layoutY="142.0" prefHeight="39.0" prefWidth="1096.0" />
       <Separator layoutX="42.0" layoutY="256.0" prefHeight="16.0" prefWidth="1201.0" />
       <Label layoutX="799.0" layoutY="206.0" text="Date of Birth:" />
-      <DatePicker layoutX="914.0" layoutY="200.0" prefHeight="39.0" prefWidth="318.0" />
+      <DatePicker fx:id="bDate" layoutX="914.0" layoutY="200.0" prefHeight="39.0" prefWidth="318.0" />
       <Label layoutX="546.0" layoutY="14.0" text="Personal Info">
          <font>
             <Font size="48.0" />
@@ -28,26 +28,26 @@
          </font>
       </Label>
       <Label layoutX="48.0" layoutY="348.0" text="Email Address:" />
-      <TextField layoutX="173.0" layoutY="342.0" prefHeight="39.0" prefWidth="1062.0" />
-      <TextField layoutX="173.0" layoutY="400.0" prefHeight="39.0" prefWidth="427.0" />
+      <TextField fx:id="email" layoutX="173.0" layoutY="342.0" prefHeight="39.0" prefWidth="1062.0" />
+      <TextField fx:id="homePhone" layoutX="173.0" layoutY="400.0" prefHeight="39.0" prefWidth="427.0" />
       <Label layoutX="48.0" layoutY="406.0" text="Home Phone:" />
       <Label layoutX="711.0" layoutY="406.0" text="Cellphone:" />
-      <TextField layoutX="802.0" layoutY="400.0" prefHeight="39.0" prefWidth="433.0" />
+      <TextField fx:id="cellPhone" layoutX="802.0" layoutY="400.0" prefHeight="39.0" prefWidth="433.0" />
       <Label layoutX="547.0" layoutY="466.0" text="Location Info">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
       <Separator layoutX="40.0" layoutY="442.0" prefHeight="16.0" prefWidth="1201.0" />
-      <TextField layoutX="175.0" layoutY="536.0" prefHeight="39.0" prefWidth="1062.0" />
+      <TextField fx:id="streetAddress" layoutX="175.0" layoutY="536.0" prefHeight="39.0" prefWidth="1062.0" />
       <Label layoutX="46.0" layoutY="542.0" text="Street Address:" />
       <Label layoutX="50.0" layoutY="601.0" text="City:" />
-      <TextField layoutX="93.0" layoutY="595.0" prefHeight="39.0" prefWidth="293.0" />
-      <TextField layoutX="459.0" layoutY="595.0" prefHeight="39.0" prefWidth="69.0" />
+      <TextField fx:id="city" layoutX="93.0" layoutY="595.0" prefHeight="39.0" prefWidth="293.0" />
+      <TextField fx:id="state" layoutX="459.0" layoutY="595.0" prefHeight="39.0" prefWidth="69.0" />
       <Label layoutX="405.0" layoutY="601.0" text="State:" />
       <Label layoutX="559.0" layoutY="601.0" text="Zip Code:" />
-      <TextField layoutX="644.0" layoutY="595.0" prefHeight="39.0" prefWidth="69.0" />
-      <TextField layoutX="811.0" layoutY="595.0" prefHeight="39.0" prefWidth="427.0" />
+      <TextField fx:id="zip" layoutX="644.0" layoutY="595.0" prefHeight="39.0" prefWidth="69.0" />
+      <TextField fx:id="country" layoutX="811.0" layoutY="595.0" prefHeight="39.0" prefWidth="427.0" />
       <Label layoutX="732.0" layoutY="601.0" text="Country:" />
    </children>
 </AnchorPane>
