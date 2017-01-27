@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package firstproject;
-
+import java.lang.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -54,24 +54,39 @@ public class FXMLExperienceLevelController implements Initializable {
     @FXML private Button experiencedButton;
     @FXML private Button managerButton;
     @FXML private Button executiveButton;
-    @FXML private String experience;
+    @FXML private String experience= "";
+    
+    Thread t = new Thread();
+
     
     @FXML
     private void nextPage(ActionEvent e) throws IOException
        {
+
+          if (experience.isEmpty())
+          {
+               error.setText("Select one of these");
+               return;
+           }
+          
+          else 
+          {
            database();
            Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));
            Scene home_page_scene = new Scene(home_page_parent);
            Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
            app_stage.setScene(home_page_scene);
            app_stage.show();
-           
+          }
            
        }
      
     private void database(){
+           
+           
             String query = "INSERT INTO level (EXPERIENCE) VALUES (" + "'" + experience +  "');";
-            insertStatement(query);
+            insertStatement(query); 
+
     }
     
     

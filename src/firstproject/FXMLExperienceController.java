@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.time.temporal.TemporalField;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,6 +69,14 @@ public class FXMLExperienceController implements Initializable {
     @FXML
     private DatePicker Date_to_picker;
     
+    @FXML private Label error_label;
+    
+    @FXML
+    private Label error_label1;
+    
+    @FXML
+    private Label error_label4;
+    
     @FXML
     public void nextPage(ActionEvent e) throws IOException
     {     
@@ -82,10 +91,34 @@ public class FXMLExperienceController implements Initializable {
     @FXML
     private void AddButton (ActionEvent event) throws IOException   {
         
-//           String query = "INSERT INTO WorkExp (Position, Name_of_Company, Description, Date_from_picker, Date_to_picker) VALUES ("+"'"+ Position_text.getText() +
-//                  "'," + "'" + Name_of_Company_text.getText() + "'," + "'" + Description_text.getText() + "'," + "'" +
-//                   Description_text.getText() + "'," + "'" + Date_from_picker.getValue() + "'," + "'" + Date_to_picker.getValue() + "');";
-           
+
+        if (Position_text.getText().isEmpty()){
+            error_label1.setText("Enter a value");//Postion    
+        }
+        else {
+            error_label1.setText("");
+        }
+        
+        
+        if ( Name_of_Company_text.getText().isEmpty()){
+            error_label.setText("Enter a value");//Name of Company
+        }
+        else{
+            error_label.setText("");//Name of Company
+        }
+        
+        if ( Description_text.getText().isEmpty()){
+            error_label4.setText("Enter a value");//Description
+        }
+        else{
+            error_label4.setText("");//Description
+        }
+        
+        
+        
+        
+
+        if (!Position_text.getText().isEmpty() && !Name_of_Company_text.getText().isEmpty() && !Description_text.getText().isEmpty()){
            String query = "INSERT INTO WorkEXP( Company, Position, FromDate, EndDate, Description) VALUES ("+
                    "'" +  Name_of_Company_text.getText() + "'," +
                    "'" +  Position_text.getText() + "'," +
@@ -94,6 +127,7 @@ public class FXMLExperienceController implements Initializable {
                    "'" +  Description_text.getText() +
                    "');";
                    insertStatement(query);
+        }
     }
     
      @FXML
