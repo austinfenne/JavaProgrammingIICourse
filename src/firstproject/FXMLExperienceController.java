@@ -64,6 +64,9 @@ public class FXMLExperienceController implements Initializable {
     private Button AddBtn;
     
     @FXML
+    private Button PrevBtn;
+    
+    @FXML
     private DatePicker Date_from_picker;
     
     @FXML
@@ -91,6 +94,7 @@ public class FXMLExperienceController implements Initializable {
     @FXML
     private void AddButton (ActionEvent event) throws IOException   {
         
+        boolean a = false;
 
         if (Position_text.getText().isEmpty()){
             error_label1.setText("Enter a value");//Postion    
@@ -114,7 +118,7 @@ public class FXMLExperienceController implements Initializable {
             error_label4.setText("");//Description
         }
         
-        
+      
         
         
 
@@ -125,6 +129,8 @@ public class FXMLExperienceController implements Initializable {
                    "'" +  Date_from_picker.getValue()+ "'," +
                    "'" +  Date_to_picker.getValue() + "'," +
                    "'" +  Description_text.getText() +
+        
+        
                    "');";
                    insertStatement(query);
         }

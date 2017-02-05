@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.Templates.FXMLTemplate2Controller">
+   <children>
+      <Label fx:id="YourName" layoutX="83.0" layoutY="41.0" />
+      <Label fx:id="City" layoutX="69.0" layoutY="93.0" />
+      <Label fx:id="State" layoutX="123.0" layoutY="93.0" />
+      <Label fx:id="Summary" layoutX="99.0" layoutY="144.0" />
+      <Label fx:id="WorkExp" layoutX="99.0" layoutY="207.0" />
+      <Label fx:id="Education" layoutX="99.0" layoutY="255.0" />
+      <Label fx:id="AddInfo" layoutX="99.0" layoutY="316.0" />
+      <TextArea fx:id="WorkExp_Text" layoutX="160.0" layoutY="172.0" prefHeight="57.0" prefWidth="382.0" />
+      <TextArea fx:id="Edu_Text" layoutX="160.0" layoutY="244.0" prefHeight="57.0" prefWidth="382.0" />
+      <TextArea fx:id="AddInfo_Text" layoutX="160.0" layoutY="316.0" prefHeight="57.0" prefWidth="382.0" />
+      <TextArea fx:id="Sum_Text" layoutX="160.0" layoutY="102.0" prefHeight="57.0" prefWidth="382.0" />
+   </children>
+</AnchorPane>
