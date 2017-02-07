@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLPersonalInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLPersonalInfoController">
    <children>
       <TextField fx:id="fName" layoutX="136.0" layoutY="81.0" prefHeight="39.0" prefWidth="1096.0" />
       <Label layoutX="37.0" layoutY="87.0" text="First Name:" />
@@ -16,13 +16,13 @@
       <Separator layoutX="42.0" layoutY="256.0" prefHeight="16.0" prefWidth="1201.0" />
       <Label layoutX="799.0" layoutY="206.0" text="Date of Birth:" />
       <DatePicker fx:id="bDate" layoutX="914.0" layoutY="200.0" prefHeight="39.0" prefWidth="318.0" />
-      <Label layoutX="546.0" layoutY="14.0" text="Personal Info">
+      <Label id="title" layoutX="546.0" layoutY="14.0" text="Personal Info">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="nextButton" layoutX="1150.0" layoutY="663.0" mnemonicParsing="false" onAction="#nextPage" text="Next" />
-      <Label layoutX="546.0" layoutY="272.0" text="Contact Info">
+      <Button fx:id="nextButton" layoutX="1206.0" layoutY="747.0" mnemonicParsing="false" onAction="#nextPage" text="Next" />
+      <Label id="title" layoutX="546.0" layoutY="272.0" text="Contact Info">
          <font>
             <Font size="48.0" />
          </font>
@@ -33,7 +33,7 @@
       <Label layoutX="48.0" layoutY="406.0" text="Home Phone:" />
       <Label layoutX="711.0" layoutY="406.0" text="Cellphone:" />
       <TextField fx:id="cellPhone" layoutX="802.0" layoutY="400.0" prefHeight="39.0" prefWidth="433.0" />
-      <Label layoutX="547.0" layoutY="466.0" text="Location Info">
+      <Label id="title" layoutX="547.0" layoutY="466.0" text="Location Info">
          <font>
             <Font size="48.0" />
          </font>
@@ -46,8 +46,9 @@
       <TextField fx:id="state" layoutX="459.0" layoutY="595.0" prefHeight="39.0" prefWidth="69.0" />
       <Label layoutX="405.0" layoutY="601.0" text="State:" />
       <Label layoutX="559.0" layoutY="601.0" text="Zip Code:" />
-      <TextField fx:id="zip" layoutX="644.0" layoutY="595.0" prefHeight="39.0" prefWidth="69.0" />
-      <TextField fx:id="country" layoutX="811.0" layoutY="595.0" prefHeight="39.0" prefWidth="427.0" />
-      <Label layoutX="732.0" layoutY="601.0" text="Country:" />
+      <TextField fx:id="zip" layoutX="644.0" layoutY="595.0" prefHeight="39.0" prefWidth="88.0" />
+      <TextField fx:id="country" layoutX="830.0" layoutY="595.0" prefHeight="39.0" prefWidth="408.0" />
+      <Label layoutX="754.0" layoutY="601.0" text="Country:" />
+      <Button fx:id="prevButton" layoutX="14.0" layoutY="747.0" mnemonicParsing="false" onAction="#prevPage" text="Prev" />
    </children>
 </AnchorPane>

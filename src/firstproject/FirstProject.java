@@ -24,6 +24,9 @@ public class FirstProject extends Application {
         
         Scene scene = new Scene(root);
         
+        String css = FirstProject.class.getResource("format.css").toExternalForm();
+        scene.getStylesheets().add(css);
+        
         stage.setScene(scene);
         stage.show();
     }

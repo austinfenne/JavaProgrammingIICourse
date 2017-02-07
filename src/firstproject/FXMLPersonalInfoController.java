@@ -31,6 +31,8 @@ public class FXMLPersonalInfoController implements Initializable {
     @FXML
     private Button nextButton;
     @FXML
+    private Button prevButton;
+    @FXML
     private TextField fName;
     @FXML
     private TextField lName;
@@ -67,31 +69,51 @@ public class FXMLPersonalInfoController implements Initializable {
            String zipCode = zip.getText();
            String nation = country.getText();
            
+           int pgNum = 1;
+           
            int error = 0;
            if ("".equals(firstName) || "".equals(lastName) || "".equals(email_address) || "".equals(hPhone) || "".equals(cPhone) || "".equals(street_address) || "".equals(town) || "".equals(province) || "".equals(zipCode) || "".equals(nation) || bDate.getValue() == null)
            {
-               System.out.println("nope");
+               System.out.println("Not all fields entered");
                error = 1;
            }
-           if (error == 0)
+           
+           // ZipCode length test
+           String zipCodePattern = "\\d{5}(-\\d{4})?";
+           if (zipCode.matches(zipCodePattern) == false)
            {
-           String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "');";
-           
-           System.out.println("Inserting\n" + query);
-           
-           insertStatement(query);
-           
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLOnlinePrecense.fxml"));
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
+               System.out.println("Zip fail");
+               error = 2;
            }
-           else if (error == 1)
-           {
-               JOptionPane.showMessageDialog(null, "Please enter all information.", "Error", JOptionPane.WARNING_MESSAGE);
-           }
+           
+           
+        switch (error) {
+            case 0:
+                // String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "');";
+                
+                //System.out.println("Inserting\n" + query);
+                
+                //insertStatement(query);
+                
+                ChangePage pgChange = new ChangePage();
+                pgChange.nextPage(e, pgNum);
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(null, "Please enter all information.", "Error", JOptionPane.WARNING_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "Zip code should be five digits.", "Error", JOptionPane.WARNING_MESSAGE);
+                break;
+        }
        }
+    
+    public void prevPage(ActionEvent e) throws IOException
+    {
+        int pgNum = 1;
+        
+        ChangePage pgChange = new ChangePage();
+        pgChange.prevPage(e, pgNum);
+    }
     
     public void insertStatement(String insert_query)
     {
