@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.temporal.TemporalField;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -78,6 +79,12 @@ public class FXMLExperienceController implements Initializable {
     private Label error_label1;
     
     @FXML
+    private Label error_label2;
+    
+    @FXML
+    private Label error_label3;
+    
+    @FXML
     private Label error_label4;
     
     @FXML
@@ -93,6 +100,10 @@ public class FXMLExperienceController implements Initializable {
     
     @FXML
     private void AddButton (ActionEvent event) throws IOException   {
+        
+        LocalDate startDate = Date_from_picker.getValue();
+        LocalDate endDate = Date_to_picker.getValue();
+        
         
         boolean a = false;
 
@@ -116,7 +127,23 @@ public class FXMLExperienceController implements Initializable {
         }
         else{
             error_label4.setText("");//Description
+        } 
+        
+        if (startDate == null){
+            error_label2.setText("Clikc a Date");
         }
+        else{
+            error_label2.setText("");
+        }
+        
+        if (endDate == null){
+            error_label3.setText("Click a Date");
+        }
+        else {
+            error_label3.setText("");
+        }
+        
+        
         
       
         
