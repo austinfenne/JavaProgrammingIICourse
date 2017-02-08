@@ -43,5 +43,18 @@ public class FXMLTemplate2Controller implements Initializable {
 
     }    
      
+    //constructor
+    private FXMLTemplate2Controller(TextArea Sum_Text, TextArea WorkExp_Text,
+            TextArea Edu_Text, TextArea AddInfo_Text){
+        this.AddInfo_Text = AddInfo_Text;
+        this.WorkExp_Text = WorkExp_Text;
+        this.Edu_Text = Edu_Text;
+        this.Sum_Text = Sum_Text;
+        
+        
+    };
+    
+    
+    
     
 }

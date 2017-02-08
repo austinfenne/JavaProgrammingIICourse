@@ -16,6 +16,6 @@
       <TextArea fx:id="WorkExp_Text" layoutX="160.0" layoutY="172.0" prefHeight="57.0" prefWidth="382.0" />
       <TextArea fx:id="Edu_Text" layoutX="160.0" layoutY="244.0" prefHeight="57.0" prefWidth="382.0" />
       <TextArea fx:id="AddInfo_Text" layoutX="160.0" layoutY="316.0" prefHeight="57.0" prefWidth="382.0" />
-      <TextArea fx:id="Sum_Text" layoutX="160.0" layoutY="102.0" prefHeight="57.0" prefWidth="382.0" />
+      <TextArea fx:id="Sum_Text" layoutX="159.0" layoutY="102.0" prefHeight="57.0" prefWidth="382.0" />
    </children>
 </AnchorPane>

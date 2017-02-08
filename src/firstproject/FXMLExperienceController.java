@@ -90,12 +90,22 @@ public class FXMLExperienceController implements Initializable {
     @FXML
     public void nextPage(ActionEvent e) throws IOException
     {     
-        
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLEducation.fxml"));
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();               
+        int pgNum = 4;
+             
+           
+           
+//           ChangePage changePage = new ChangePage;
+//           pgChange = nextPage(e,pgNum);
+    }
+    @FXML
+    public void PrevPage(ActionEvent e) throws IOException
+    {     
+        int pgNum = 4;
+             
+           
+           
+//           ChangePage changePage = new ChangePage;
+//           pgChange = prevPage(e,pgNum);
     }
     
     @FXML
@@ -198,7 +208,7 @@ public class FXMLExperienceController implements Initializable {
         }
         
     }
-  
+        
 
     /**
      * Initializes the controller class.
