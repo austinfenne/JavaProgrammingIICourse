@@ -5,6 +5,8 @@
  */
 package firstproject;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,16 +23,12 @@ public class FirstProject extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
-        
-        Scene scene = new Scene(root);
-        
+        Scene scene = new Scene(root);      
         stage.setScene(scene);
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
         launch(args);
     }

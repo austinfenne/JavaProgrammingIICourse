@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.temporal.TemporalField;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,10 +21,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 
 /**
  * FXML Controller class
@@ -34,25 +39,24 @@ public class FXMLLoginController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @FXML 
+    @FXML
     private TextField username_box;
-    @FXML 
+    @FXML
     private TextField password_box;
     @FXML
     private Label invalid_label;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
-        
-        
-            System.out.println("DO IT");
-            Parent home_page_parent =  FXMLLoader.load(getClass().getResource("FXMLHomePage.fxml"));
+    private void handleButtonAction(ActionEvent event) throws IOException{
+              System.out.println("DO IT");
+            Parent home_page_parent =  FXMLLoader.load(getClass().getResource("FXMLPersonalInfo.fxml"));
             Scene home_page_scene = new Scene(home_page_parent);
             Stage app_stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            
+    
+           
             if (isValidCredentials())
             {
-                app_stage.hide(); 
+                app_stage.hide(); //optional
                 app_stage.setScene(home_page_scene);
                 app_stage.show();  
             }
@@ -62,22 +66,19 @@ public class FXMLLoginController implements Initializable {
                 password_box.clear();
                 invalid_label.setText("Sorry, invalid credentials"); 
             }
-    }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
-
-    private boolean isValidCredentials() {
+    
+    }
+    private boolean isValidCredentials()
+    {
         boolean let_in = false;
         System.out.println( "SELECT * FROM Users WHERE USERNAME= " + "'" + username_box.getText() + "'" 
             + " AND PASSWORD= " + "'" + password_box.getText() + "'" );
-        
+    
         Connection c = null;
         Statement stmt = null;
         try {
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
+            c = DriverManager.getConnection("jdbc:sqlite:login.db");
             c.setAutoCommit(false);
             
             System.out.println("Opened database successfully");
@@ -104,6 +105,11 @@ public class FXMLLoginController implements Initializable {
             }
             System.out.println("Operation done successfully");
             return let_in;
+        
     }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
     
 }
