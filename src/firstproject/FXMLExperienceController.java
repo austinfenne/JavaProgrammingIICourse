@@ -73,7 +73,8 @@ public class FXMLExperienceController implements Initializable {
     @FXML
     private DatePicker Date_to_picker;
     
-    @FXML private Label error_label;
+    @FXML 
+    private Label error_label;
     
     @FXML
     private Label error_label1;
