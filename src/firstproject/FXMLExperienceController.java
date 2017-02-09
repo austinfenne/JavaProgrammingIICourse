@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.temporal.TemporalField;
 import java.util.ResourceBundle;
@@ -25,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -32,6 +34,9 @@ import javafx.stage.Stage;
  * @author fenne113
  */
 public class FXMLExperienceController implements Initializable {
+    Database db = new Database();
+    ResultSet rs = null;
+    public int ID = 0;
     
     @FXML
     private Label Position;
@@ -113,19 +118,19 @@ public class FXMLExperienceController implements Initializable {
         else{
             error_label4.setText("");//Description
         }
+        //get user id
+        ID = db.getUser_ID();
+ 
         
-        
-        
-        
-
         if (!Position_text.getText().isEmpty() && !Name_of_Company_text.getText().isEmpty() && !Description_text.getText().isEmpty()){
-           String query = "INSERT INTO WorkEXP( Company, Position, FromDate, EndDate, Description) VALUES ("+
+           String query = "INSERT INTO WorkEXP( Company, Position, FromDate, EndDate, Description,USER_ID) VALUES ("+
                    "'" +  Name_of_Company_text.getText() + "'," +
                    "'" +  Position_text.getText() + "'," +
                    "'" +  Date_from_picker.getValue()+ "'," +
                    "'" +  Date_to_picker.getValue() + "'," +
-                   "'" +  Description_text.getText() +
-                   "');";
+                   "'" +  Description_text.getText() +"',"+
+                   ID +
+                   ");";
                    insertStatement(query);
         }
     }

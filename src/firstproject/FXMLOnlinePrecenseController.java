@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -28,7 +30,10 @@ import javafx.stage.Stage;
  * @author fenne113
  */
 public class FXMLOnlinePrecenseController implements Initializable {
-
+    Database db = new Database();
+    ResultSet rs = null;
+    public int ID = 0;
+    
     @FXML TextField www;
     @FXML TextField twitter;
     @FXML TextField linkedin;
@@ -45,10 +50,11 @@ public class FXMLOnlinePrecenseController implements Initializable {
            app_stage.setScene(home_page_scene);
            app_stage.show();
           
+            ID = db.getUser_ID();        
+ 
            
-           
-                String query = "INSERT INTO onlineprecense (WWW,TWITTER,LINKEDIN) VALUES (" + "'" + www.getText() + 
-                "'," + "'" + twitter.getText() + "'," + "'" + linkedin.getText() + "');";
+                String query = "INSERT INTO onlineprecense (WWW,TWITTER,LINKEDIN,USER_ID) VALUES (" + "'" + www.getText() + 
+                "'," + "'" + twitter.getText() + "'," + "'" + linkedin.getText() + "'," + ID + ");";
            
                 insertStatement(query);
                     

@@ -5,14 +5,10 @@
  */
 package firstproject;
 
-import java.sql.Statement;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.sql.ResultSetMetaData;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -27,6 +23,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -50,16 +47,23 @@ public class FXMLEducationController implements Initializable {
         @FXML private Label startDateErr;
         @FXML private Label endDateErr;
         String noError = "";
+        int pgNum = 6;
+        Database db = new Database();
+        ResultSet rs = null;
+        public int ID = 0;
         
         @FXML
         private void addEd(ActionEvent e) throws IOException
         {
+   
             String school = txtSchool.getText().trim();
             String study = txtStudy.getText().trim();
             LocalDate startDate = dpStart.getValue();
             LocalDate endDate = dpEnd.getValue();
             
-            int error = 0;
+            int error = 0; 
+            
+            //evaluate if school data entry field is empty
             if (school.isEmpty())
             {
                 schoolErr.setText("No School Entered.");
@@ -67,7 +71,8 @@ public class FXMLEducationController implements Initializable {
             }
             else 
                 schoolErr.setText(noError);
-
+            
+            //evaluate if area of study data entry field is empty
             if (study.isEmpty())
             {
                 studyErr.setText("No Area of Study Entered.");
@@ -75,96 +80,63 @@ public class FXMLEducationController implements Initializable {
             }
             else
                 studyErr.setText(noError);
-
+            
+            //evaluate if start date data entry field is empty
             if (startDate == null)
             {
                 startDateErr.setText("No Start Date Entered.");
                 error = 1;
+            }//evaluate if end date is before start date
+            else if (startDate.compareTo(endDate)>0){
+                startDateErr.setText("End Date is Before Start Date.");
+                error = 1;
             }
-            else
+            else{
                 startDateErr.setText(noError);
+            }
             
+            //evaluate if end date data entry field is empty
             if (endDate == null)
             {
                 endDateErr.setText("No End Date Entered");
                 error = 1;
+            }//evaluate if end date is before start date
+            else if (startDate.compareTo(endDate)>0){
+                endDateErr.setText("End Date is Before Start Date.");
+                error = 1;
             }   
-            else
+            else {
                 endDateErr.setText(noError);
-            
+            }
+           
+            //all fields are populated and valid
            if (error == 0) 
            {
                Education newEducation = new Education(school, study, startDate, endDate);
-               
-               
-//               String selectQuery = "SELECT max(user_id) as \"user id\" FROM education;";
-//               selectStatement(selectQuery);
-               
-                //add education to database
-                String query = "INSERT INTO Education (SCHOOL, STUDY, START_DATE, END_DATE) VALUES ("+
+               //get user_id
+                ID = db.getUser_ID();   
+                //set insert query string
+                String query = "INSERT INTO Education (SCHOOL, STUDY, START_DATE, END_DATE, USER_ID) VALUES ("+
                     "'" + newEducation.getSchool()+ "'," +
                     "'" + newEducation.getStudy()+ "', " + 
                     "'" + newEducation.getStartDate() + "',"+
-                    "'" + newEducation.getEndDate()+"');";
-            
-                insertStatement(query);
+                    "'" + newEducation.getEndDate()+ "'," +
+                    ID + ");";
+                
+                //call insert query
+                db.insertQuery(query);
             
                 //clear form
                 clear();
             
                 //reset error labels
                 resetLabels();
-            
-           }
-           
-            
-        }
         
-//        private ResultSet selectStatement (String select_query)
-//        {
-//            Connection c = null;
-//            Statement stmt = null;
-//            ResultSet something = null;
-//            try {
-//                Class.forName("org.sqlite.JDBC");
-//                c = DriverManager.getConnection("jdbc:sqlite:first.db");
-//                c.setAutoCommit(false);
-//                stmt = c.createStatement();
-//                something = stmt.executeQuery(select_query);
-//                stmt.close();
-//                c.commit();
-//                c.close();
-//                System.out.printf("MAX id is %s", something);
-//                return something;
-//            } 
-//            catch (Exception e){
-//                System.err.println(e.getClass().getName() + ": " + e.getMessage());
-//                System.out.printf("MAX id is %s", something);
-//                return something;
-//            }
-//        }
-        
-        private void insertStatement (String insert_query)
-        {
-            Connection c = null;
-            Statement stmt = null;
-            try {
-                Class.forName("org.sqlite.JDBC");
-                c = DriverManager.getConnection("jdbc:sqlite:first.db");
-                c.setAutoCommit(false);
-                stmt = c.createStatement();
-                stmt.executeUpdate(insert_query);
-                stmt.close();
-                c.commit();
-                c.close();
-            } 
-            catch (Exception e){
-                System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            }
+           }   
         }
         
         @FXML
-        private void clear()
+        private void clear() //clear all fields
         {
             txtSchool.clear();
             txtStudy.clear();
@@ -172,7 +144,7 @@ public class FXMLEducationController implements Initializable {
             dpEnd.getEditor().clear();
         }
         
-        private void resetLabels()
+        private void resetLabels() //clear all "error" labels
         {
             schoolErr.setText(noError);
             studyErr.setText(noError);
@@ -183,22 +155,26 @@ public class FXMLEducationController implements Initializable {
         @FXML
         public void nextPage(ActionEvent e) throws IOException
        {
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLEducation.fxml"));//change this to next page when complete
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
-          
+//           Parent home_page_parent = FXMLLoader.load(getClass().getResource("DB_Test_Resume.fxml"));//change this to resume page when complete
+//           Scene home_page_scene = new Scene(home_page_parent);
+//           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//           app_stage.setScene(home_page_scene);
+//           app_stage.show();
+          ChangePage pgChange = new ChangePage();
+            pgChange.nextPage(e, pgNum);
        }
             
         @FXML
         public void prevPage(ActionEvent e) throws IOException
         {
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
+//           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));//change to resume page
+//           Scene home_page_scene = new Scene(home_page_parent);
+//           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//           app_stage.setScene(home_page_scene);
+//           app_stage.show();
+           ChangePage pgChange = new ChangePage();
+            pgChange.prevPage(e, pgNum);
+           
         }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -39,6 +40,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -46,7 +48,10 @@ import javafx.stage.Stage;
  * @author fenne113
  */
 public class FXMLExperienceLevelController implements Initializable {
-
+    Database db = new Database();
+    ResultSet rs = null;
+    public int ID = 0;
+    
     @FXML private Button nextButton;
     @FXML private Button studentButton;
     @FXML private Label error;
@@ -71,6 +76,9 @@ public class FXMLExperienceLevelController implements Initializable {
           
           else 
           {
+              
+            ID = db.getUser_ID();
+
            database();
            Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));
            Scene home_page_scene = new Scene(home_page_parent);
@@ -84,7 +92,7 @@ public class FXMLExperienceLevelController implements Initializable {
     private void database(){
            
            
-            String query = "INSERT INTO level (EXPERIENCE) VALUES (" + "'" + experience +  "');";
+            String query = "INSERT INTO level (EXPERIENCE,USER_ID) VALUES (" + "'" + experience +  "',"+ID+");";
             insertStatement(query); 
 
     }

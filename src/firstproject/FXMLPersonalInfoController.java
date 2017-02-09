@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -27,6 +28,9 @@ import javax.swing.JOptionPane;
 
 
 public class FXMLPersonalInfoController implements Initializable {
+    Database db = new Database();
+  //  ResultSet rs = null;
+    public int ID = 0;
     
     @FXML
     private Button nextButton;
@@ -55,6 +59,11 @@ public class FXMLPersonalInfoController implements Initializable {
     
     public void nextPage(ActionEvent e) throws IOException
        {
+           //get max user id 
+          ID = db.getUser_ID();
+          //increment for new entry
+          ID = ID + 1;
+          
            String firstName = fName.getText();
            String lastName = lName.getText();
            LocalDate birthday = bDate.getValue();
@@ -75,7 +84,7 @@ public class FXMLPersonalInfoController implements Initializable {
            }
            if (error == 0)
            {
-           String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "');";
+           String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION,USER_ID) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "'," + ID + ");";
            
            System.out.println("Inserting\n" + query);
            
