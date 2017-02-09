@@ -143,6 +143,10 @@ public class FXMLExperienceController implements Initializable {
         if (startDate == null){
             error_label2.setText("Clikc a Date");
         }
+        else if (startDate.compareTo(endDate)>0)
+        {
+            error_label2.setText("End Date is before Start Date");
+        }
         else{
             error_label2.setText("");
         }
