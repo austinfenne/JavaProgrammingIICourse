@@ -38,12 +38,10 @@ public class FXMLOnlinePrecenseController implements Initializable {
         private void nextPage(ActionEvent e) throws IOException
        {
             
+           int pgNum = 2;
            
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperienceLevel.fxml"));
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
+            ChangePage pgChange = new ChangePage();
+            pgChange.nextPage(e, pgNum);
           
            
            
