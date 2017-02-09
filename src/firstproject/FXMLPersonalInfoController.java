@@ -89,11 +89,11 @@ public class FXMLPersonalInfoController implements Initializable {
            
         switch (error) {
             case 0:
-                // String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "');";
+                String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "');";
                 
-                //System.out.println("Inserting\n" + query);
+                System.out.println("Inserting\n" + query);
                 
-                //insertStatement(query);
+                insertStatement(query);
                 
                 ChangePage pgChange = new ChangePage();
                 pgChange.nextPage(e, pgNum);
