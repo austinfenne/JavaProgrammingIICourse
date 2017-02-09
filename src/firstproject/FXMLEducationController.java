@@ -155,23 +155,26 @@ public class FXMLEducationController implements Initializable {
         @FXML
         public void nextPage(ActionEvent e) throws IOException
        {
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("DB_Test_Resume.fxml"));//change this to resume page when complete
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
-          //ChangePage changePage = new ChangePage;
-          //pgChange = setPage(e, pgNum);
+//           Parent home_page_parent = FXMLLoader.load(getClass().getResource("DB_Test_Resume.fxml"));//change this to resume page when complete
+//           Scene home_page_scene = new Scene(home_page_parent);
+//           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//           app_stage.setScene(home_page_scene);
+//           app_stage.show();
+          ChangePage pgChange = new ChangePage();
+            pgChange.nextPage(e, pgNum);
        }
             
         @FXML
         public void prevPage(ActionEvent e) throws IOException
         {
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));//change to resume page
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
+//           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));//change to resume page
+//           Scene home_page_scene = new Scene(home_page_parent);
+//           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//           app_stage.setScene(home_page_scene);
+//           app_stage.show();
+           ChangePage pgChange = new ChangePage();
+            pgChange.prevPage(e, pgNum);
+           
         }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
