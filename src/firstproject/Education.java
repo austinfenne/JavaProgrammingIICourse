@@ -32,8 +32,6 @@ public class Education {
     
     public void setSchool(String school)
     {
-//        if (school == "")
-//            throw new IllegalArgumentException("No School Entered");
         this.school = school;
         
     }
@@ -45,8 +43,6 @@ public class Education {
     
     public void setStudy (String study)
     {
-//        if (study == "")
-//            throw new IllegalArgumentException("No Field of Study Entered");
         this.study = study;
         
     }

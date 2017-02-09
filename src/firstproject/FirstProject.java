@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  * @author fenne113
  */
 public class FirstProject extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLPersonalInfo.fxml"));
