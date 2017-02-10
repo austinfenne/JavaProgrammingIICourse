@@ -20,10 +20,13 @@ public class FirstProject extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLPersonalInfo.fxml"));
         
-        Scene scene = new Scene(root);
+     
         
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));        
+        Scene scene = new Scene(root);        
+        String css = FirstProject.class.getResource("format.css").toExternalForm();
+        scene.getStylesheets().add(css);      
         stage.setScene(scene);
         stage.show();
     }

@@ -16,5 +16,6 @@
       <Label layoutX="278.0" layoutY="252.0" text="WWW" />
       <Label layoutX="276.0" layoutY="366.0" text="Twitter" />
       <Label layoutX="704.0" layoutY="252.0" text="LinkedIn" />
+      <Button layoutX="68.0" layoutY="672.0" mnemonicParsing="false" text="Prev" />
    </children>
 </AnchorPane>

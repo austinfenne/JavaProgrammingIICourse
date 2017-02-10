@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLTemplateSelectionController">
+   <children>
+      <Button layoutX="261.0" layoutY="141.0" mnemonicParsing="false" onAction="#clickedTemplate" prefHeight="415.0" prefWidth="361.0" text="Template 1" />
+      <Button layoutX="676.0" layoutY="141.0" mnemonicParsing="false" onAction="#clickedTemplate" prefHeight="415.0" prefWidth="355.0" text="Template 2" />
+   </children>
+</AnchorPane>

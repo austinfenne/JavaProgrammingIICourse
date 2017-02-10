@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -28,12 +27,14 @@ import javax.swing.JOptionPane;
 
 
 public class FXMLPersonalInfoController implements Initializable {
+    
     Database db = new Database();
-  //  ResultSet rs = null;
     public int ID = 0;
     
     @FXML
     private Button nextButton;
+    @FXML
+    private Button prevButton;
     @FXML
     private TextField fName;
     @FXML
@@ -59,11 +60,9 @@ public class FXMLPersonalInfoController implements Initializable {
     
     public void nextPage(ActionEvent e) throws IOException
        {
-           //get max user id 
-          ID = db.getUser_ID();
-          //increment for new entry
-          ID = ID + 1;
-          
+           ID = db.getUser_ID();
+           ID = ID + 1;
+           
            String firstName = fName.getText();
            String lastName = lName.getText();
            LocalDate birthday = bDate.getValue();
@@ -76,55 +75,53 @@ public class FXMLPersonalInfoController implements Initializable {
            String zipCode = zip.getText();
            String nation = country.getText();
            
+           int pgNum = 1;
+           
            int error = 0;
            if ("".equals(firstName) || "".equals(lastName) || "".equals(email_address) || "".equals(hPhone) || "".equals(cPhone) || "".equals(street_address) || "".equals(town) || "".equals(province) || "".equals(zipCode) || "".equals(nation) || bDate.getValue() == null)
            {
-               System.out.println("nope");
+               System.out.println("Not all fields entered");
                error = 1;
            }
-           if (error == 0)
+           
+           // ZipCode length test
+           String zipCodePattern = "\\d{5}(-\\d{4})?";
+           if (zipCode.matches(zipCodePattern) == false)
            {
-           String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION,USER_ID) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "'," + ID + ");";
-           
-           System.out.println("Inserting\n" + query);
-           
-           insertStatement(query);
-           
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLOnlinePrecense.fxml"));
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
+               System.out.println("Zip fail");
+               error = 2;
            }
-           else if (error == 1)
-           {
-               JOptionPane.showMessageDialog(null, "Please enter all information.", "Error", JOptionPane.WARNING_MESSAGE);
-           }
+           
+           
+        switch (error) {
+            case 0:
+                String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION,USER_ID) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "'," + ID + ");";                
+                System.out.println("Inserting\n" + query);
+                
+            //    db.insertQuery(query);
+                
+                ChangePage pgChange = new ChangePage();
+                pgChange.nextPage(e, pgNum);
+                
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(null, "Please enter all information.", "Error", JOptionPane.WARNING_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "Zip code should be five digits.", "Error", JOptionPane.WARNING_MESSAGE);
+                break;
+        }
        }
     
-    public void insertStatement(String insert_query)
+    public void prevPage(ActionEvent e) throws IOException
     {
-        Connection c = null;
-        Statement stmt = null;
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:first.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-            System.out.println("Our query was: " + insert_query);
-            stmt.executeUpdate(insert_query);
-            stmt.close();
-            c.commit();
-            c.close();
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
+        int pgNum = 1;
+        
+        ChangePage pgChange = new ChangePage();
+        pgChange.prevPage(e, pgNum);
     }
+    
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

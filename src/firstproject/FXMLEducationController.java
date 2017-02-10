@@ -47,7 +47,7 @@ public class FXMLEducationController implements Initializable {
         @FXML private Label startDateErr;
         @FXML private Label endDateErr;
         String noError = "";
-        int pgNum = 6;
+        int pgNum = 5;
         Database db = new Database();
         ResultSet rs = null;
         public int ID = 0;

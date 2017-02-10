@@ -52,6 +52,8 @@ public class FXMLExperienceLevelController implements Initializable {
     ResultSet rs = null;
     public int ID = 0;
     
+    private int pgNum = 3;
+    
     @FXML private Button nextButton;
     @FXML private Button studentButton;
     @FXML private Label error;
@@ -78,24 +80,18 @@ public class FXMLExperienceLevelController implements Initializable {
           {
               
             ID = db.getUser_ID();
+           
+            String query = "INSERT INTO level (EXPERIENCE,USER_ID) VALUES (" + "'" + experience +  "',"+ID+");";
+           
+db.insertQuery(query);
 
-           database();
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperience.fxml"));
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
+ChangePage pgChange = new ChangePage();
+pgChange.nextPage(e, pgNum);
+
           }
            
        }
-     
-    private void database(){
-           
-           
-            String query = "INSERT INTO level (EXPERIENCE,USER_ID) VALUES (" + "'" + experience +  "',"+ID+");";
-            insertStatement(query); 
 
-    }
     
     
     @FXML   private void clickedStudent(ActionEvent event) throws IOException {
@@ -114,26 +110,7 @@ public class FXMLExperienceLevelController implements Initializable {
            experience = "Executive";
        }
     
-    private void insertStatement(String insert_query){
-        
-    Connection c = null;
-    Statement stmt = null;
-    try {
-      Class.forName("org.sqlite.JDBC");
-      c = DriverManager.getConnection("jdbc:sqlite:first.db");
-      c.setAutoCommit(false);
-      System.out.println("Opened database successfully");
-      stmt = c.createStatement(); 
-      System.out.println("Our query was: " + insert_query);
-      stmt.executeUpdate(insert_query);
-      stmt.close();
-      c.commit();
-      c.close();
-    }catch ( Exception e ) {
-                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-                System.exit(0);  
-        }
-    }
+
 
 ////    @Override
     public void initialize(URL url, ResourceBundle rb) {

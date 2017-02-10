@@ -40,47 +40,24 @@ public class FXMLOnlinePrecenseController implements Initializable {
     @FXML
     private Button nextButton;
     @FXML
+ 
         private void nextPage(ActionEvent e) throws IOException
        {
-            
+              int pgNum = 2;
+              ID = db.getUser_ID();
            
-           Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLExperienceLevel.fxml"));
-           Scene home_page_scene = new Scene(home_page_parent);
-           Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           app_stage.setScene(home_page_scene);
-           app_stage.show();
-          
-            ID = db.getUser_ID();        
+              ChangePage pgChange = new ChangePage();
+              pgChange.nextPage(e, pgNum);
  
            
                 String query = "INSERT INTO onlineprecense (WWW,TWITTER,LINKEDIN,USER_ID) VALUES (" + "'" + www.getText() + 
                 "'," + "'" + twitter.getText() + "'," + "'" + linkedin.getText() + "'," + ID + ");";
            
-                insertStatement(query);
+                db.insertQuery(query);
                     
        }
      
 
-        private void insertStatement(String insert_query){
-        
-    Connection c = null;
-    Statement stmt = null;
-    try {
-      Class.forName("org.sqlite.JDBC");
-      c = DriverManager.getConnection("jdbc:sqlite:first.db");
-      c.setAutoCommit(false);
-      System.out.println("Opened database successfully");
-      stmt = c.createStatement(); 
-      System.out.println("Our query was: " + insert_query);
-      stmt.executeUpdate(insert_query);
-      stmt.close();
-      c.commit();
-      c.close();
-    }catch ( Exception e ) {
-                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-                System.exit(0);  
-        }
-    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
