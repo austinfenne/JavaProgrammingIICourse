@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import javafx.fxml.FXML;
 import javax.swing.JOptionPane;
 
 /**
@@ -83,5 +85,25 @@ public class Database {
                 JOptionPane.showMessageDialog(null,exc.getMessage());
             }
         return user_id;
+    }
+    @FXML
+    public ResultSet selectFromTable (String dbTableName, String ID){
+        
+        try{   
+            // set select query string
+            String selectQuery = "SELECT * FROM " + dbTableName + " where User_ID = " + ID;
+            
+            //execute query and create metadata object
+            rs = selectStatement(selectQuery);
+            ResultSetMetaData rsmd = rs.getMetaData();
+        }catch (Exception e){
+            e.printStackTrace();;
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        finally {
+           return rs; 
+    }
+        
     }
 }
