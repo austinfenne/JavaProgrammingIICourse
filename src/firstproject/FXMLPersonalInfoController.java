@@ -98,7 +98,7 @@ public class FXMLPersonalInfoController implements Initializable {
                 String query = "INSERT INTO PersonalInfo (FIRSTNAME,LASTNAME,BIRTHDAY,EMAILADDRESS,HPHONE,CPHONE,STREETADDRESS,TOWN,PROVINCE,ZIPCODE,NATION,USER_ID) VALUES (" + "'" + firstName + "'," + "'" + lastName + "'," + "'" + birthday + "'," + "'" + email_address + "'," + "'" + hPhone + "'," + "'" + cPhone + "'," + "'" + street_address + "'," + "'" + town + "'," + "'" + province + "'," + "'" + zipCode + "'," + "'" + nation + "'," + ID + ");";                
                 System.out.println("Inserting\n" + query);
                 
-            //    db.insertQuery(query);
+                 db.insertQuery(query);
                 
                 ChangePage pgChange = new ChangePage();
                 pgChange.nextPage(e, pgNum);

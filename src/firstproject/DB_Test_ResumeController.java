@@ -126,8 +126,11 @@ public class DB_Test_ResumeController implements Initializable {
             
             try{
                 if (rs.next()){
+                    
                     fName.setText(rs.getString("firstname"));
                     lName.setText(rs.getString("lastname"));
+               
+                    
                 }
             }catch (Exception e){
             e.printStackTrace();;
