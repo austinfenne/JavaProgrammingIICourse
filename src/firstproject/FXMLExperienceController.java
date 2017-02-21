@@ -5,6 +5,7 @@
  */
 package firstproject;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -13,6 +14,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.temporal.TemporalField;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +28,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
 
 /**
  * FXML Controller class
@@ -51,6 +54,9 @@ public class FXMLExperienceController implements Initializable {
     
     @FXML
     private TextField Position_text; 
+
+       
+       
     
     @FXML
     private TextField Name_of_Company_text;
@@ -106,7 +112,7 @@ public class FXMLExperienceController implements Initializable {
              
            
            
-//           ChangePage changePage = new ChangePage;
+//       ChangePage changePage = new ChangePage;
 //           pgChange = prevPage(e,pgNum);
     }
     
@@ -198,6 +204,7 @@ public class FXMLExperienceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) { 
+        
     }
 
       
