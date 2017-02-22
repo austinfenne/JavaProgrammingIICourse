@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.temporal.TemporalField;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,27 +35,9 @@ import javafx.scene.control.TextField;
  * @author fenne113
  */
 public class FXMLExperienceController implements Initializable {
-    
-    @FXML
-    private Label Position;
-    
-    @FXML
-    private Label Name_of_company;
-    
-    @FXML
-    private Label Description;
-    
-    @FXML
-    private Label Date_from;
-    
-    @FXML
-    private Label Date_to;
-    
+       
     @FXML
     private TextField Position_text; 
-
-       
-       
     
     @FXML
     private TextField Name_of_Company_text;
@@ -80,19 +61,19 @@ public class FXMLExperienceController implements Initializable {
     private DatePicker Date_to_picker;
     
     @FXML 
-    private Label error_label;
+    private Label CompanyName_err;
     
     @FXML
-    private Label error_label1;
+    private Label Position_err;
     
     @FXML
-    private Label error_label2;
+    private Label StartDate_err;
     
     @FXML
-    private Label error_label3;
+    private Label EndDate_err;
     
     @FXML
-    private Label error_label4;
+    private Label Description_err;
         Database db = new Database();
     public int ID = 0;
     @FXML
@@ -122,55 +103,64 @@ public class FXMLExperienceController implements Initializable {
         LocalDate startDate = Date_from_picker.getValue();
         LocalDate endDate = Date_to_picker.getValue();
         
+       
         
+
+        String description = Description_text.getText();
+        String descriptP = "\\d{5}(-\\d{4})?";
+        
+     
         boolean a = false;
 
         if (Position_text.getText().isEmpty()){
-            error_label1.setText("Enter a value");//Postion    
+            Position_err.setText("Enter a value");//Postion label   
         }
         else {
-            error_label1.setText("");
+            Position_err.setText("");
         }
-        
         
         if ( Name_of_Company_text.getText().isEmpty()){
-            error_label.setText("Enter a value");//Name of Company
+            CompanyName_err.setText("Enter a value");//Name of Company label
         }
         else{
-            error_label.setText("");//Name of Company
+            CompanyName_err.setText("");//Name of Company label
         }
         
         if ( Description_text.getText().isEmpty()){
-            error_label4.setText("Enter a value");//Description
+            Description_err.setText("Enter a value");//Description label
         }
         else{
-            error_label4.setText("");//Description
+            Description_err.setText("");//Description label
         } 
         
         if (startDate == null){
-            error_label2.setText("Clikc a Date");
+            StartDate_err.setText("Clikc a Date");
         }
         else if (startDate.compareTo(endDate)>0)
         {
-            error_label2.setText("End Date is before Start Date");
+            StartDate_err.setText("End Date is before Start Date");
         }
         else{
-            error_label2.setText("");
+            StartDate_err.setText("");
         }
         
         if (endDate == null){
-            error_label3.setText("Click a Date");
+            EndDate_err.setText("Click a Date");
         }
         else {
-            error_label3.setText("");
+            EndDate_err.setText("");
+        }
+        
+        if (descriptP.matches(descriptP) == false)
+        {
+           Description_err.setText("please enter proper variable");
+        }
+        
+        if (description.matches(".*\\d.*") || description.matches("\\d{5}(-\\d{0})?")){
+            Description_err.setText("please enter proper variable");
         }
         
         
-        
-      
-        
-        
-
         if (!Position_text.getText().isEmpty() && !Name_of_Company_text.getText().isEmpty() && !Description_text.getText().isEmpty()){
            String query = "INSERT INTO WorkExp( Company, Position, FromDate, EndDate, Description, USER_ID) VALUES ("+
                    "'" +  Name_of_Company_text.getText() + "'," +
@@ -180,6 +170,8 @@ public class FXMLExperienceController implements Initializable {
                    "'" +  Description_text.getText() +     
                    "'," + ID + ");";
                    db.insertQuery(query);
+                   
+         
         }
     }
     
