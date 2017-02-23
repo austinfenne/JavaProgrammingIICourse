@@ -91,7 +91,7 @@ public class DB_Test_ResumeController implements Initializable {
                         });
                     tblEducation.getColumns().addAll(tc);//add column to table
             }
-            col = rsmd.getColumnCount();//retrieve column couint
+            col = rsmd.getColumnCount();//retrieve column count
             
             //place data added to observable list into arraylist
             while (rs.next())
