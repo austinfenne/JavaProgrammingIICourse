@@ -51,7 +51,7 @@ public class FXMLLoginController implements Initializable {
               
 
     
-           
+           // validate users
             if (isValidCredentials())
             {
                 ChangePage pgChange = new ChangePage();
@@ -66,6 +66,8 @@ public class FXMLLoginController implements Initializable {
     
     
     }
+    
+    //DB connecting
     private boolean isValidCredentials()
     {
         boolean let_in = false;
