@@ -17,5 +17,7 @@
       <Label layoutX="101.0" layoutY="169.0" text="password" />
       <Label layoutX="249.0" layoutY="44.0" text="Login Page" />
       <Label fx:id="invalid_label" layoutX="218.0" layoutY="296.0" prefHeight="17.0" prefWidth="136.0" textFill="RED" />
+      <Button fx:id="facebookButton" layoutX="250.0" layoutY="290.0" mnemonicParsing="false" onAction="#authUser" text="Facebook" />
+      <Label fx:id="message" layoutX="471.0" layoutY="237.0" />
    </children>
 </AnchorPane>

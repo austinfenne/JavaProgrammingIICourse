@@ -23,6 +23,7 @@ public class Database {
     ResultSet rs = null;
     PreparedStatement pst = null;
     Statement stmt = null;
+    
 
     public void insertQuery (String insert_query)
     {

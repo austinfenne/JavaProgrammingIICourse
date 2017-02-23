@@ -5,6 +5,9 @@
  */
 package firstproject;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.types.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,8 +23,8 @@ public class FirstProject extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        
-     
+      
+       
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));        
         Scene scene = new Scene(root);        

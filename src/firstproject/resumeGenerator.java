@@ -31,10 +31,17 @@ import javax.swing.JOptionPane;
  */
 public class resumeGenerator {
  
-    Database db = new Database();
-    ResultSet rs = null;
-    String fName;
-    String lName;
+    private Database db = new Database();
+    private ResultSet rs = null;
+   
+ 
+    
+    
+    
+    resumeGenerator(){
+ 
+    }
+
 
     void createResume() throws IOException {
         Document resume = new Document();
@@ -200,46 +207,18 @@ public class resumeGenerator {
         } catch(DocumentException | FileNotFoundException e){
             System.out.println(e.getMessage());
         }
-        String dbname = "PersonalInfo";
-        Database dbfile = new Database();
         
-        String ID = dbfile.getUser_ID().toString();
-        addToTextFields( dbname, ID);
-        System.out.println(fName);
+        
+        {
+
         
         File file = new File("resume.pdf");
         Desktop.getDesktop().open(file);
         
     }
-        @FXML
-    public void addToTextFields(String dbTableName, String ID){
-        
-        try{   
-            // set select query string
-            String selectQuery = "SELECT * FROM " + dbTableName + " where User_ID = " + ID;
-            
-            //execute query and create metadata object
-            rs = db.selectStatement(selectQuery);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            
-            try{
-                if (rs.next()){
-                    
-                    fName = (rs.getString("firstname"));
-                    lName = (rs.getString("lastname"));
-                    
-                    
-                }
-            }catch (Exception e){
-            e.printStackTrace();;
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null,e.getMessage());
-            }
-        }catch (Exception e){
-            e.printStackTrace();;
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null,e.getMessage());
-        }
-        
-    }
+
 }
+
+
+
+    }
