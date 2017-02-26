@@ -23,7 +23,7 @@ public class FirstProject extends Application {
         
      
         
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLAdditionalSkills.fxml"));        
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLSummary.fxml"));        
         Scene scene = new Scene(root);        
         String css = FirstProject.class.getResource("format.css").toExternalForm();
         scene.getStylesheets().add(css);      

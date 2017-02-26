@@ -9,8 +9,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLSummaryController">
    <children>
-      <Button layoutX="512.0" layoutY="337.0" mnemonicParsing="false" text="NEXT" />
-      <TextArea layoutX="21.0" layoutY="200.0" prefHeight="125.0" prefWidth="558.0" promptText="Enter your resume summary, profile or objective." />
+      <Button fx:id="Next" layoutX="512.0" layoutY="337.0" mnemonicParsing="false" onAction="#NextPage" text="NEXT" />
+      <TextArea fx:id="txt" layoutX="21.0" layoutY="200.0" prefHeight="125.0" prefWidth="558.0" promptText="Enter your resume summary, profile or objective." />
       <ImageView fitHeight="38.0" fitWidth="36.0" layoutX="3.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../Desktop/SE/star.PNG" />
@@ -29,5 +29,6 @@
             <Image url="@../../../../../Desktop/SE/glasses.PNG" />
          </image>
       </ImageView>
+      <Button fx:id="Add" layoutX="39.0" layoutY="350.0" mnemonicParsing="false" onAction="#AddBtn" text="ADD" />
    </children>
 </AnchorPane>

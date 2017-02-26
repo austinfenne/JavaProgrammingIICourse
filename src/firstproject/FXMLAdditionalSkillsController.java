@@ -29,7 +29,10 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -43,6 +46,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
@@ -51,6 +55,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author kimx5154
  */
+
 public class FXMLAdditionalSkillsController implements Initializable {
 
     /**
@@ -61,14 +66,16 @@ public class FXMLAdditionalSkillsController implements Initializable {
     @FXML
     private Button Next;
     @FXML
-    private Label label;
+    private Label skillerr;
     @FXML
-    private TextArea txt;
+    private Label deleteerr;
+    @FXML
+    private TextField txtSkills;
     @FXML
     private Button delete;
+    
     @FXML
-    private ListView listview;
- 
+    private ObservableList tableData;
     @FXML
     private TableView<UserDetails> tableUser;
     @FXML
@@ -77,16 +84,52 @@ public class FXMLAdditionalSkillsController implements Initializable {
     private Button btnLoad;
     private ObservableList<UserDetails> data;
     private DbConnection dc;
- 
+    @FXML
+    private Connection con;
+    Database db = new Database();
+    String noError = "";
+    ResultSet rs = null;
+    
+    public int ID = 0;
+    
+    private PreparedStatement pst;
+   
+    
+    
+    
     
     
     @FXML
-    private void AddButton(ActionEvent e){
-        
-      
-            loadDataFromDatabase(e);
-        
+    private void AddButton(ActionEvent e) throws IOException{
          
+                        
+                ID = db.getUser_ID();
+                System.out.println(txtSkills.getText().trim());
+                
+  //              set insert query string
+                String query = "INSERT INTO Skills (skill, USER_ID) VALUES ("+
+                    "'" + txtSkills.getText()+ "'," +
+                    ID + ");";
+                
+ //               call insert query
+                db.insertQuery(query);
+              
+                loadDataFromDatabase(e);
+                
+
+            }
+    
+
+
+
+      
+            
+    
+     @FXML 
+    private void NextPage(ActionEvent e) throws IOException{
+       
+              ChangePage pgChange = new ChangePage();
+          // pgChange.nextPage(e, pgNum);aus
     }
     
         @FXML
@@ -96,12 +139,12 @@ public class FXMLAdditionalSkillsController implements Initializable {
         try {
             Connection conn = dc.Connect();
             data = FXCollections.observableArrayList();
-            // Execute query and store result in a resultset
+             //Execute query and store result in a resultset
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM Skills");
           
             
             while (rs.next()) {
-                //get string from db,whichever way 
+               // get string from db,whichever way 
                 data.add(new UserDetails(rs.getString(1)));
                
             }
@@ -123,20 +166,33 @@ public class FXMLAdditionalSkillsController implements Initializable {
     }
     
     
-    @FXML 
-    private void NextButton(){
-        
-    }
-        
-        
-        
-    
+   
+   
 
+    public Connection Connect() {
+        try {
+          //  Your database url string,ensure it is correct
+            String url = "jdbc:sqlite:first.db";
+
+
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection(url);
+            return conn;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+   
+    
+ 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dc = new DbConnection();
-     
+       
     }    
-    
+  
 }

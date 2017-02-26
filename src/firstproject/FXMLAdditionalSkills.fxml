@@ -4,15 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLAdditionalSkillsController">
    <children>
       <Label layoutX="46.0" layoutY="35.0" text="1. Additional Skills" />
-      <TextArea fx:id="txt" layoutX="46.0" layoutY="75.0" prefHeight="113.0" prefWidth="449.0" />
       <Button fx:id="Add" layoutX="46.0" layoutY="200.0" mnemonicParsing="false" onAction="#AddButton" text="ADD" />
-      <Button fx:id="Next" layoutX="509.0" layoutY="354.0" mnemonicParsing="false" onAction="#NextButton" text="NEXT" />
+      <Button fx:id="Next" layoutX="509.0" layoutY="354.0" mnemonicParsing="false" onAction="#NextPage" text="NEXT" />
       <Label layoutX="46.0" layoutY="243.0" text="2. Review your information" />
       <Button fx:id="delete" layoutX="506.0" layoutY="314.0" mnemonicParsing="false" text="Delete" />
       <TableView fx:id="tableUser" layoutX="46.0" layoutY="262.0" prefHeight="129.0" prefWidth="349.0">
@@ -20,5 +19,8 @@
           <TableColumn fx:id="columnSkill" prefWidth="348.0" text="SKILL" />
         </columns>
       </TableView>
+      <Label fx:id="skillerr" layoutX="506.0" layoutY="161.0" />
+      <Label fx:id="deleteerr" layoutX="420.0" layoutY="358.0" prefHeight="17.0" prefWidth="23.0" />
+      <TextField fx:id="txtSkills" layoutX="87.0" layoutY="68.0" prefHeight="120.0" prefWidth="292.0" />
    </children>
 </AnchorPane>
