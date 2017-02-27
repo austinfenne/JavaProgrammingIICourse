@@ -13,7 +13,7 @@
       <Button fx:id="Add" layoutX="46.0" layoutY="200.0" mnemonicParsing="false" onAction="#AddButton" text="ADD" />
       <Button fx:id="Next" layoutX="509.0" layoutY="354.0" mnemonicParsing="false" onAction="#NextPage" text="NEXT" />
       <Label layoutX="46.0" layoutY="243.0" text="2. Review your information" />
-      <Button fx:id="delete" layoutX="506.0" layoutY="314.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="delete" layoutX="506.0" layoutY="314.0" mnemonicParsing="false" onAction="#deleteBtn" text="Delete" />
       <TableView fx:id="tableUser" layoutX="46.0" layoutY="262.0" prefHeight="129.0" prefWidth="349.0">
         <columns>
           <TableColumn fx:id="columnSkill" prefWidth="348.0" text="SKILL" />

@@ -84,4 +84,8 @@ public class Database {
             }
         return user_id;
     }
+
+    void sql() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

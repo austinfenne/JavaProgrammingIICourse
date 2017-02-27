@@ -7,32 +7,10 @@ package firstproject;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.Connection;
-import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.beans.value.ObservableListValue;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.VBox;
-import javafx.util.Callback;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -171,7 +149,7 @@ public class FXMLAdditionalSkillsController implements Initializable {
 
     public Connection Connect() {
         try {
-          //  Your database url string,ensure it is correct
+          // database url string,ensure it is correct
             String url = "jdbc:sqlite:first.db";
 
 
@@ -185,7 +163,18 @@ public class FXMLAdditionalSkillsController implements Initializable {
 
         return null;
     }
-   
+    
+    @FXML
+    private void deleteBtn(ActionEvent event) {
+        
+        String sql = "DELETE FROM Skills WHERE USER_ID = ?";
+        //delete seleted row
+        UserDetails selectedItem = tableUser.getSelectionModel().getSelectedItem();
+        tableUser.getItems().remove(selectedItem);
+        
+        //String deleteQuery(deleteQuery);
+         
+    }
     
  
 
