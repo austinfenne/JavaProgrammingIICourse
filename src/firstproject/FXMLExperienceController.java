@@ -5,23 +5,13 @@
  */
 package firstproject;
 
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -113,7 +103,7 @@ public class FXMLExperienceController implements Initializable {
         
         //description validation
         String description = Description_text.getText();
-        String descriptP = "\\d{5}(-\\d{4})?"; 
+        String descriptP = "\\d{200}(-\\d{0})?"; 
         
      
         boolean a = false;
@@ -168,9 +158,9 @@ public class FXMLExperienceController implements Initializable {
            Description_err.setText("please enter proper variable"); 
         }
         
-        if (description.matches(".*\\d.*") || description.matches("\\d{500}(-\\d{0})?")){ 
+        if (description.matches(".*\\d.*")){ 
             Description_err.setText("");
-            JOptionPane.showMessageDialog(null, "please enter proper variable in 500 letters");
+            JOptionPane.showMessageDialog(null, "please enter proper variable in 500 letters(No numbers)");
         }
         
         //
@@ -184,9 +174,19 @@ public class FXMLExperienceController implements Initializable {
                    "'," + ID + ");";
                    db.insertQuery(query);
                    
-         
+                   clear();
+                   JOptionPane.showMessageDialog(null, "You just add your information into the database");
         }
     }
+    @FXML
+        private void clear() //clear all fields
+        {
+            Position_text.clear();
+            Name_of_Company_text.clear();
+	    Description_text.clear();
+            Date_from_picker.getEditor().clear();
+            Date_to_picker.getEditor().clear();
+        }
     
      @FXML
     private void datefrompickerAction (ActionEvent event) throws IOException {

@@ -10,22 +10,22 @@
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLExperienceController">
    <children>
       <Button fx:id="NextBtn" layoutX="1106.0" layoutY="711.0" mnemonicParsing="false" onAction="#nextPage" text="NEXT" />
-      <Label fx:id="Position" layoutX="123.0" layoutY="69.0" prefHeight="30.0" prefWidth="101.0" text="Position:" />
-      <Label fx:id="Name_of_company" layoutX="72.0" layoutY="168.0" text="Name of company:" />
-      <TextField fx:id="Position_text" layoutX="234.0" layoutY="71.0" />
-      <TextField fx:id="Name_of_Company_text" layoutX="236.0" layoutY="164.0" />
-      <Label fx:id="CompanyName_err" layoutX="478.0" layoutY="169.0" prefHeight="30.0" prefWidth="101.0" textFill="#f50e0e" />
-      <DatePicker fx:id="Date_from_picker" layoutX="236.0" layoutY="253.0" onAction="#datefrompickerAction" />
-      <Label fx:id="Date_from" layoutX="108.0" layoutY="249.0" prefHeight="35.0" prefWidth="122.0" text="Date from:" />
-      <Label fx:id="Date_to" layoutX="608.0" layoutY="251.0" prefHeight="30.0" prefWidth="101.0" text="Date to:" />
-      <DatePicker fx:id="Date_to_picker" layoutX="716.0" layoutY="253.0" onAction="#datetopickerAction" />
+      <Label fx:id="Position" layoutX="121.0" layoutY="70.0" prefHeight="30.0" prefWidth="149.0" text="Position:" />
+      <Label fx:id="Name_of_company" layoutX="72.0" layoutY="164.0" prefHeight="25.0" prefWidth="174.0" text="Name of company:" />
+      <TextField fx:id="Position_text" layoutX="283.0" layoutY="72.0" />
+      <TextField fx:id="Name_of_Company_text" layoutX="283.0" layoutY="164.0" />
+      <Label fx:id="CompanyName_err" layoutX="258.0" layoutY="203.0" prefHeight="30.0" prefWidth="224.0" textFill="#f50e0e" />
+      <DatePicker fx:id="Date_from_picker" layoutX="270.0" layoutY="256.0" onAction="#datefrompickerAction" />
+      <Label fx:id="Date_from" layoutX="121.0" layoutY="256.0" prefHeight="25.0" prefWidth="136.0" text="Date from:" />
+      <Label fx:id="Date_to" layoutX="647.0" layoutY="256.0" prefHeight="25.0" prefWidth="117.0" text="Date to:" />
+      <DatePicker fx:id="Date_to_picker" layoutX="773.0" layoutY="255.0" onAction="#datetopickerAction" />
       <TextArea fx:id="Description_text" layoutX="179.0" layoutY="472.0" prefHeight="200.0" prefWidth="800.0" />
       <Label fx:id="Description" layoutX="179.0" layoutY="411.0" prefHeight="35.0" prefWidth="167.0" text="Description:" />
       <Button fx:id="AddBtn" layoutX="567.0" layoutY="711.0" mnemonicParsing="false" onAction="#AddButton" text="ADD" />
-      <Label fx:id="Position_err" layoutX="485.0" layoutY="75.0" prefHeight="30.0" prefWidth="101.0" textFill="#f50e0e" />
-      <Label fx:id="StartDate_err" layoutX="421.0" layoutY="252.0" prefHeight="30.0" prefWidth="167.0" textFill="#f50e0e" />
-      <Label fx:id="EndDate_err" layoutX="914.0" layoutY="252.0" prefHeight="30.0" prefWidth="101.0" textFill="#f50e0e" />
-      <Label fx:id="Description_err" layoutX="1015.0" layoutY="632.0" prefHeight="30.0" prefWidth="101.0" textFill="#f50e0e" />
+      <Label fx:id="Position_err" layoutX="258.0" layoutY="109.0" prefHeight="30.0" prefWidth="224.0" textFill="#f50e0e" />
+      <Label fx:id="StartDate_err" layoutX="389.0" layoutY="293.0" prefHeight="30.0" prefWidth="183.0" textFill="#f50e0e" />
+      <Label fx:id="EndDate_err" layoutX="773.0" layoutY="293.0" prefHeight="30.0" prefWidth="239.0" textFill="#f50e0e" />
+      <Label fx:id="Description_err" layoutX="780.0" layoutY="672.0" prefHeight="30.0" prefWidth="239.0" textFill="#f50e0e" />
       <Button layoutX="72.0" layoutY="712.0" mnemonicParsing="false" text="PREVIOUS" />
    </children>
 </AnchorPane>
