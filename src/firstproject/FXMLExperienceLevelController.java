@@ -50,7 +50,7 @@ import javax.swing.JOptionPane;
 public class FXMLExperienceLevelController implements Initializable {
     Database db = new Database();
     ResultSet rs = null;
-    public int ID = 0;
+    public int ID = db.getUser_ID();
     
     private int pgNum = 3;
     
@@ -70,16 +70,8 @@ public class FXMLExperienceLevelController implements Initializable {
     private void nextPage(ActionEvent e) throws IOException
        {
 
-          if (experience.isEmpty())
-          {
-               error.setText("Select one of these");
-               return;
-           }
-          
-          else 
-          {
               
-            ID = db.getUser_ID();
+            
            
             String query = "INSERT INTO level (EXPERIENCE,USER_ID) VALUES (" + "'" + experience +  "',"+ID+");";
            
@@ -88,7 +80,7 @@ db.insertQuery(query);
 ChangePage pgChange = new ChangePage();
 pgChange.nextPage(e, pgNum);
 
-          }
+          
            
        }
 

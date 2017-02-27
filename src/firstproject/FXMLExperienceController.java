@@ -66,7 +66,7 @@ public class FXMLExperienceController implements Initializable {
     @FXML
     private Label Description_err;
         Database db = new Database();
-    public int ID = 0;
+    public int ID = db.getUser_ID();
    
     //NextPage
     @FXML
@@ -152,11 +152,7 @@ public class FXMLExperienceController implements Initializable {
             EndDate_err.setText("");
         }
         
-        //description validation
-        if (descriptP.matches(descriptP) == false)
-        {
-           Description_err.setText("please enter proper variable"); 
-        }
+
         
         if (description.matches(".*\\d.*")){ 
             Description_err.setText("");

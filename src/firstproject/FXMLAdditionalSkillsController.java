@@ -68,7 +68,7 @@ public class FXMLAdditionalSkillsController implements Initializable {
     String noError = "";
     ResultSet rs = null;
       int pgNum = 8;
-    public int ID = 0;
+    public int ID = db.getUser_ID();
     
     private PreparedStatement pst;
    
@@ -81,7 +81,7 @@ public class FXMLAdditionalSkillsController implements Initializable {
     private void AddButton(ActionEvent e) throws IOException{
          
                         
-                ID = db.getUser_ID();
+               
                 System.out.println(txtSkills.getText().trim());
                 
   //              set insert query string

@@ -21,9 +21,9 @@
             <Image url="@../../../../../Desktop/SE/star.PNG" />
          </image>
       </ImageView>
-      <Text layoutX="185.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start with your professional title Starting a resume summary with your professional title informs a recruiter that your resume is relevant e.g., Marketing Manager with 5+ years of experience." wrappingWidth="173.47000390291214" />
-      <Text layoutX="564.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add two or three achievements Add numbers and details. Focusing on results allows you to stand out and proves you’re the right candidate eg., Increased sales by 36% over 6 months." wrappingWidth="173.47000122070312" />
-      <Text layoutX="923.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tailor it to the job offer Find keywords from the job description, including skills and adjectives (dedicated, hardworking) and add them to your resume summary." wrappingWidth="154.13671875" />
+      <Text layoutX="187.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start with your professional title Starting a resume summary with your professional title informs a recruiter that your resume is relevant e.g., Marketing Manager with 5+ years of experience." wrappingWidth="173.47000390291214" />
+      <Text layoutX="543.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add two or three achievements Add numbers and details. Focusing on results allows you to stand out and proves you’re the right candidate eg., Increased sales by 36% over 6 months." wrappingWidth="173.47000122070312" />
+      <Text layoutX="919.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tailor it to the job offer Find keywords from the job description, including skills and adjectives (dedicated, hardworking) and add them to your resume summary." wrappingWidth="154.13671875" />
       <ImageView fitHeight="38.0" fitWidth="36.0" layoutX="496.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../Desktop/SE/doc.PNG" />
@@ -35,5 +35,10 @@
          </image>
       </ImageView>
       <Button fx:id="Add" layoutX="86.0" layoutY="632.0" mnemonicParsing="false" onAction="#AddBtn" text="ADD" />
+      <Label layoutX="511.0" layoutY="8.0" prefHeight="85.0" prefWidth="448.0" text="Summary">
+         <font>
+            <Font size="58.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

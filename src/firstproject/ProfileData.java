@@ -5,7 +5,12 @@
  */
 package firstproject;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javax.swing.JOptionPane;
 
 
@@ -24,19 +29,21 @@ public class ProfileData {
     private String WWW;
     private String Twitter;
     private String Linkedin;
+    private String Summary;
     
-    private String Company[];
-    private String Position[];
-    private String fromDate[];
-    private String endDate[];
-    private String Description[];
+    private String Company;
+    private String Position;
+    private String fromDate;
+    private String endDate;
+    private String Description;
     
-    private String School[];
-    private String Study[];
-    private String StartDate[];
-    private String Graduation[];
+    private String School;
+    private String Study;
+    private String StartDate;
+    private String Graduation;
     
-    
+    private ArrayList<String> Skills = new ArrayList<String>();
+    private DbConnection dc;
     private Database db = new Database();
     private ResultSet rs = null;
 
@@ -86,10 +93,10 @@ public class ProfileData {
             Database db = new Database();        
                     
 
-                    setfName(rs.getString("SCHOOL"));
-                    setlName(rs.getString("STUDY"));
-                    setEmail(rs.getString("START_DATE"));
-                    setHphone(rs.getString("END_DATE"));
+                    setSchool(rs.getString("SCHOOL"));
+                    setStudy(rs.getString("STUDY"));
+                    setStartDate(rs.getString("START_DATE"));
+                    setGraduation(rs.getString("END_DATE"));
                         
                     
                 }
@@ -105,7 +112,7 @@ public class ProfileData {
         }
                       
                       
-                                 try{
+           try{
             String selectQuery = "SELECT * FROM " + "WorkExp" + " where User_ID = " + db.getUser_ID();      
             rs = db.selectStatement(selectQuery);
             try{
@@ -114,11 +121,11 @@ public class ProfileData {
             Database db = new Database();        
                     
 
-                    setfName(rs.getString("Company"));
-                    setlName(rs.getString("Position"));
-                    setEmail(rs.getString("FromDate"));
-                    setHphone(rs.getString("EndDate"));
-                    setStreetAddress(rs.getString("Description"));
+                    setCompany(rs.getString("Company"));
+                    setPosition(rs.getString("Position"));
+                    setFromDate(rs.getString("FromDate"));
+                    setEndDate(rs.getString("EndDate"));
+                    setDescription(rs.getString("Description"));
                                             
                 }
             }catch (Exception e){
@@ -181,6 +188,51 @@ public class ProfileData {
             e.printStackTrace();;
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+                
+                 try{
+            String selectQuery = "SELECT * FROM " + "Summary" + " where User_ID = " + db.getUser_ID();      
+            rs = db.selectStatement(selectQuery);
+            try{
+                if (rs.next()){
+                                
+            Database db = new Database();        
+                    
+
+                    setSummary(rs.getString("Sum"));
+ 
+                    
+                }
+            }catch (Exception e){
+            e.printStackTrace();;
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            }
+                    }catch (Exception e){
+            e.printStackTrace();;
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }       
+                       
+                       
+                               
+        try {
+            
+            ArrayList<String> mySkills = new ArrayList<String>();
+             //Execute query and store result in a resultset
+            String selectQuery = "SELECT * FROM Skills WHERE USER_ID = " + db.getUser_ID();
+            rs = db.selectStatement(selectQuery);
+          
+            
+            while (rs.next()) {
+               // get string from db,whichever way 
+                mySkills.add(rs.getString(1));
+               
+            }
+            setSkills(mySkills);
+         
+        } catch (SQLException ex) {
+            System.err.println("Error"+ex);
         }
                                             
                                             
@@ -298,85 +350,115 @@ public class ProfileData {
         this.Linkedin = Linkedin;
     }
 
-    public String[] getCompany() {
+    public String getCompany() {
         return Company;
     }
 
-    public void setCompany(String[] Company) {
+    public void setCompany(String Company) {
         this.Company = Company;
     }
 
-    public String[] getPosition() {
+    public String getPosition() {
         return Position;
     }
 
-    public void setPosition(String[] Position) {
+    public void setPosition(String Position) {
         this.Position = Position;
     }
 
-    public String[] getFromDate() {
+    public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(String[] fromDate) {
+    public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
 
 
-    public String[] getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
 
-    public void setEndDate(String[] endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public String[] getDescription() {
+    public String getDescription() {
         return Description;
     }
 
-    public void setDescription(String[] Description) {
+    public void setDescription(String Description) {
         this.Description = Description;
     }
 
-    public String[] getSchool() {
+    public String getSchool() {
         return School;
     }
 
   
-    public void setSchool(String[] School) {
+    public void setSchool(String School) {
         this.School = School;
     }
 
-    public String[] getStudy() {
+    public String getStudy() {
         return Study;
     }
 
 
-    public void setStudy(String[] Study) {
+    public void setStudy(String Study) {
         this.Study = Study;
     }
 
 
-    public String[] getStartDate() {
+    public String getStartDate() {
         return StartDate;
     }
 
 
-    public void setStartDate(String[] StartDate) {
+    public void setStartDate(String StartDate) {
         this.StartDate = StartDate;
     }
 
 
-    public String[] getGraduation() {
+    public String getGraduation() {
         return Graduation;
     }
 
 
-    public void setGraduation(String[] Graduation) {
+    public void setGraduation(String Graduation) {
         this.Graduation = Graduation;
     }
+
+    /**
+     * @return the Skills
+     */
+    public ArrayList<String> getSkills() {
+        return Skills;
+    }
+
+    /**
+     * @param Skills the Skills to set
+     */
+    public void setSkills(ArrayList<String> Skills) {
+        this.Skills = Skills;
+    }
+
+    /**
+     * @return the Summary
+     */
+    public String getSummary() {
+        return Summary;
+    }
+
+    /**
+     * @param Summary the Summary to set
+     */
+    public void setSummary(String Summary) {
+        this.Summary = Summary;
+    }
+
+
 
 
 }

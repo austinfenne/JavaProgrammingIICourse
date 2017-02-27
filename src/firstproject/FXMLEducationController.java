@@ -58,7 +58,7 @@ public class FXMLEducationController implements Initializable {
         int pgNum = 5;
         Database db = new Database();
         ResultSet rs = null;
-        public int ID = 0;
+        public int ID = db.getUser_ID();
                 
         @FXML
         private void addEd(ActionEvent e) throws IOException
@@ -135,7 +135,7 @@ public class FXMLEducationController implements Initializable {
            {
                Education newEducation = new Education(school, study, startDate, endDate);
                //get user_id
-                ID = db.getUser_ID();   
+                  
                 //set insert query string
                 String query = "INSERT INTO Education (SCHOOL, STUDY, START_DATE, END_DATE, USER_ID) VALUES ("+
                     "'" + newEducation.getSchool()+ "'," +

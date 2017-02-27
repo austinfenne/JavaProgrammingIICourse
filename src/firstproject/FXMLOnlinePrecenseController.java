@@ -32,7 +32,7 @@ import javax.swing.JOptionPane;
 public class FXMLOnlinePrecenseController implements Initializable {
     Database db = new Database();
     ResultSet rs = null;
-    public int ID = 0;
+    public int ID = db.getUser_ID();
     
     @FXML TextField www;
     @FXML TextField twitter;
@@ -44,8 +44,7 @@ public class FXMLOnlinePrecenseController implements Initializable {
         private void nextPage(ActionEvent e) throws IOException
        {
               int pgNum = 2;
-              ID = db.getUser_ID();
-           
+          
               ChangePage pgChange = new ChangePage();
               pgChange.nextPage(e, pgNum);
  

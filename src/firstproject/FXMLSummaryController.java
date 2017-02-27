@@ -34,12 +34,13 @@ public class FXMLSummaryController implements Initializable {
     private Button Next;
     @FXML
     Database db = new Database();
-    public int ID = 0;
+    public int ID = db.getUser_ID();
+          
       int pgNum = 7;
     
     @FXML
     private void AddBtn(ActionEvent e){
-                ID = db.getUser_ID();
+               
                 System.out.println(txt.getText().trim());
                 
   //            set insert query string

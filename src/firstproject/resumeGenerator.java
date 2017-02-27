@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package firstproject;
 
 import com.itextpdf.text.Chunk;
@@ -20,31 +16,27 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPCell;
 import java.io.FileOutputStream;
+import firstproject.Database;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import javafx.fxml.FXML;
-import javax.swing.JOptionPane;
-
-/**
- *
- * @author krishna keshav
- */
-public class resumeGenerator {
+import java.util.ArrayList;
  
+
+public class resumeGenerator {
+  
     private Database db = new Database();
     private ResultSet rs = null;
-   
- 
     
-    
-    
-    resumeGenerator(){
- 
-    }
+
 
 
     void createResume() throws IOException {
-        Document resume = new Document();
+        
+        
+        ProfileData Profile = new ProfileData();
+    
+        
+        
+           Document resume = new Document();
         try {
             
             PdfWriter.getInstance(resume, new FileOutputStream("resume.pdf"));
@@ -56,169 +48,226 @@ public class resumeGenerator {
             String space = "";
             Font font2 = new Font(Font.FontFamily.HELVETICA  , 18, Font.BOLD | Font.UNDERLINE);
             resume.add(new Paragraph("RESUME", font2)); 
-            Paragraph name = new Paragraph("Name");
+            Paragraph name = new Paragraph((String) Profile.getfName()+ " " + Profile.getlName());
             name.setAlignment(Paragraph.ALIGN_LEFT);
             resume.add( name );
-            Paragraph email = new Paragraph("Email");
+            Paragraph email = new Paragraph((String) Profile.getEmail());
             email.setAlignment(Paragraph.ALIGN_RIGHT);
             resume.add(email );
-            Paragraph contact = new Paragraph("ContactNumber");
+            Paragraph contact = new Paragraph((String) Profile.getCphone());
             contact.setAlignment(Paragraph.ALIGN_RIGHT);
             resume.add(contact);  
             resume.add(Chunk.NEWLINE);
             resume.add(line);
             resume.add(Chunk.NEWLINE);
+            
+            
+       
             Font font1 = new Font(Font.FontFamily.HELVETICA  , 13, Font.BOLD | Font.UNDERLINE);
-            resume.add(new Chunk("Qulaification ", font1));
+            resume.add(new Chunk("Summary ", font1));
             resume.add(Chunk.NEWLINE);
-            PdfPTable table = new PdfPTable(2);
+            resume.add(Chunk.NEWLINE);
+            Paragraph summary;
+            summary = new Paragraph((String) Profile.getSummary());
+            summary.setIndentationLeft(50);
+            resume.add(summary);
+            resume.add(Chunk.NEWLINE);
+        
+            
+            resume.add(Chunk.NEWLINE);
+            resume.add(new Chunk("Experience ", font1));
+            resume.add(Chunk.NEWLINE);
+            PdfPTable EXPtable = new PdfPTable(4);
+            PdfPCell EXPcell1 = new PdfPCell(new Paragraph("Company"));
+            PdfPCell EXPcell2 = new PdfPCell(new Paragraph("Position"));
+            PdfPCell EXPcell3 = new PdfPCell(new Paragraph("From-Date"));
+            PdfPCell EXPcell4 = new PdfPCell(new Paragraph("End-Date"));
+            PdfPCell EXPcell5;
+            EXPcell5 = new PdfPCell(new Paragraph((String) Profile.getCompany()));
+            resume.add(EXPcell5);
+            resume.add(Chunk.NEWLINE);
+            PdfPCell EXPcell6 = new PdfPCell(new Paragraph((String) Profile.getPosition()));
+            resume.add(EXPcell6);
+            PdfPCell EXPcell7;
+            EXPcell7 = new PdfPCell(new Paragraph((String) Profile.getFromDate())) ;
+            resume.add(EXPcell7);
+            PdfPCell EXPcell8;
+            EXPcell8 = new PdfPCell(new Paragraph((String) Profile.getEndDate())) ;
+            resume.add(EXPcell8);
+            
+        
+          
+            
+         
+            
+            
+            EXPtable.addCell(EXPcell1);
+            EXPtable.addCell(EXPcell2);
+            EXPtable.addCell(EXPcell3);
+            EXPtable.addCell(EXPcell4);
+            EXPtable.addCell(EXPcell5);
+            EXPtable.addCell(EXPcell6);
+            EXPtable.addCell(EXPcell7);
+            EXPtable.addCell(EXPcell8);
+           
+
+            resume.add(EXPtable);
+            
+            resume.add(new Paragraph("Description: "));
+            Paragraph Description;
+            Description = new Paragraph((String) Profile.getDescription());
+            Description.setIndentationLeft(50);
+            resume.add(Description);
+            resume.add(Chunk.NEWLINE);
+              
+            
+            resume.add(Chunk.NEWLINE);
+            
+            
+      
+            resume.add(new Chunk("Qualification ", font1));
+            resume.add(Chunk.NEWLINE);
+            PdfPTable table = new PdfPTable(3);
             PdfPCell cell1 = new PdfPCell(new Paragraph("College"));
-            PdfPCell cell2 = new PdfPCell(new Paragraph("Percentage"));
-            PdfPCell cell3 = new PdfPCell(new Paragraph("Date"));
+            PdfPCell cell2 = new PdfPCell(new Paragraph("GPA"));
+            PdfPCell cell3 = new PdfPCell(new Paragraph("Graduation"));
             PdfPCell cell4;
-            cell4 = new PdfPCell(new Paragraph("SchoolX"));
+            cell4 = new PdfPCell(new Paragraph((String) Profile.getSchool()));
             resume.add(cell4);
             resume.add(Chunk.NEWLINE);
-            PdfPCell cell5 = new PdfPCell(new Paragraph(("PercentageX")));
+            PdfPCell cell5 = new PdfPCell(new Paragraph((String) "4.0"));
             resume.add(cell5);
             PdfPCell cell6;
-            cell6 = new PdfPCell(new Paragraph(("Date X"))) ;
+            cell6 = new PdfPCell(new Paragraph((String) Profile.getGraduation())) ;
             resume.add(cell6);
-            PdfPCell cell7;
-            cell7 = new PdfPCell(new Paragraph("SchoolXII"));
-            resume.add(cell7);
-            resume.add(Chunk.NEWLINE);
-            PdfPCell cell8 = new PdfPCell(new Paragraph("PercentageXII"));
-            resume.add(cell8);
-            PdfPCell cell9;
-            cell9 = new PdfPCell(new Paragraph("Date XII")) ;
-            resume.add(cell9);
+            
+
+            
             table.addCell(cell1);
             table.addCell(cell2);
             table.addCell(cell3);
             table.addCell(cell4);
             table.addCell(cell5);
             table.addCell(cell6);
-            table.addCell(cell7);
-            table.addCell(cell8);
-            table.addCell(cell9);
+
             resume.add(table);
             resume.add(Chunk.NEWLINE);
-            Font font3;
-            font3 = new Font(Font.FontFamily.HELVETICA  , 13, Font.BOLD | Font.UNDERLINE);
-            resume.add(new Chunk("Graduation and PostGraduation ", font1));
-            //resume.add(Chunk.NEWLINE);
-            PdfPTable table1;
-            table1 = new PdfPTable(4);
-            PdfPCell cell10 = new PdfPCell(new Paragraph(" College"));
-            PdfPCell cell11 = new PdfPCell(new Paragraph("University"));
-            PdfPCell cell12 = new PdfPCell(new Paragraph("CGPA"));
-            PdfPCell cell13 = new PdfPCell(new Paragraph("DATE"));
-            PdfPCell cell14;
-            cell14 = new PdfPCell(new Paragraph("GraduationCollege"));
-            resume.add(cell14);
-            resume.add(Chunk.NEWLINE);
-            PdfPCell cell15 = new PdfPCell(new Paragraph("GraduateUniversity"));
-            resume.add(cell15);
-            resume.add(Chunk.NEWLINE);
-            PdfPCell cell16 = new PdfPCell(new Paragraph(("GraduationCGPA")));
-            resume.add(cell16);
-            PdfPCell cell17;
-            cell17 = new PdfPCell(new Paragraph(("Graduation date"))) ;
-            resume.add(cell7);
-            PdfPCell cell18;
-            cell18 = new PdfPCell(new Paragraph(("PostGraduationCollege")));
-            resume.add(cell8);
-            resume.add(Chunk.NEWLINE);
-            PdfPCell cell19;
-            cell19 = new PdfPCell(new Paragraph(("PostGraduateUniversity")));
-            resume.add(cell19);
-            PdfPCell cell20;
-            cell20 = new PdfPCell(new Paragraph(("PostGraduateCGPA"))) ;
-            resume.add(cell20);
-            PdfPCell cell21;
-            cell21 = new PdfPCell(new Paragraph(("Post Graduation date"))) ;
-            resume.add(cell21);
-            table1.addCell(cell10);
-            table1.addCell(cell11);
-            table1.addCell(cell12);
-            table1.addCell(cell13);
-            table1.addCell(cell14);
-            table1.addCell(cell15);
-            table1.addCell(cell16);
-            table1.addCell(cell17);
-            table1.addCell(cell18);
-            table1.addCell(cell19);
-            table1.addCell(cell20);
-            table1.addCell(cell21);
-            resume.add(table1);
+
+ 
+            
+            
             Font font4;
             font4 = new Font(Font.FontFamily.HELVETICA  , 13, Font.BOLD | Font.UNDERLINE);
             resume.add(new Chunk("Skills", font1));
             resume.add(Chunk.NEWLINE);
              resume.add(Chunk.NEWLINE);
+             
+            ArrayList<String> Skills = new ArrayList<String>();
+            Skills = Profile.getSkills();
+            String[] ArrSkills = new String[Skills.size()];
+            ArrSkills = Skills.toArray(ArrSkills);
+           
+            for( int i =0; i < Skills.size(); i++) {
             Paragraph name1;
-            name1 = new Paragraph(("Skills"));
+            String SkillPrint = ArrSkills[i];
+            name1 = new Paragraph((String) SkillPrint);
             name1.setIndentationLeft(50);
             resume.add(name1);
-            Font font5;
-            font5 = new Font(Font.FontFamily.HELVETICA  , 13, Font.BOLD | Font.UNDERLINE);
-            resume.add(new Chunk("Projects", font1));
-            resume.add(Chunk.NEWLINE);
-            Paragraph name2;
-            name2 = new Paragraph(("ProjectName1"));
-            name2.setIndentationLeft(50);
-            resume.add(name2);
-            resume.add(Chunk.NEWLINE);
-            Paragraph name3;
-            name3 = new Paragraph(("projectDescription1"));
-            name3.setIndentationLeft(50);
-            resume.add(name3);
-            resume.add(Chunk.NEWLINE);
-            Paragraph name4;
-            name4 = new Paragraph(("ProjectName2"));
-            name4.setIndentationLeft(50);
-            resume.add(name4);
-            resume.add(Chunk.NEWLINE);
-            Paragraph name5;
-            name5 = new Paragraph(("projectDescription2"));
-            name5.setIndentationLeft(50);
-            resume.add(name5);
-            resume.add(Chunk.NEWLINE);
-            Paragraph name6;
-            name6 = new Paragraph(("ProjectName3"));
-            name6.setIndentationLeft(50);
-            resume.add(name6);
-            Paragraph name7;
-            name7 = new Paragraph(("projectDescription3"));
-            name7.setIndentationLeft(50);
-            resume.add(name7);
-            resume.add(Chunk.NEWLINE);
-            Paragraph name8;
-            name8 = new Paragraph(("ProjectName4"));
-            name8.setIndentationLeft(50);
-            resume.add(name8);
-            Paragraph name9;
-            name9 = new Paragraph(("projectDescription4"));
-            name9.setIndentationLeft(50);
-            resume.add(name9);
+             resume.add(Chunk.NEWLINE);
+            }
             resume.close();
             
         } catch(DocumentException | FileNotFoundException e){
             System.out.println(e.getMessage());
         }
-        
-        
-        {
-
-        
         File file = new File("resume.pdf");
         Desktop.getDesktop().open(file);
         
     }
-
+    
+    
+    
+//        public Map getDetails() {
+//        Map details = null;                    //stores values from form
+//          
+//        
+//            
+//        String candidateName = name.getText();
+//        details.put("Name" , candidateName);
+//        
+//        String candidateEmail;
+//        candidateEmail = email.getText();
+//        details.put("Email" , candidateEmail);
+//        
+//        String schoolX;
+//        schoolX = school1.getText();
+//        details.put("SchoolX" , schoolX);
+//        
+//        String percentageX = marks1.getText();
+//        details.put("PercentageX" , percentageX);
+//        
+//        String dateX = dateXField.getText();
+//        details.put("Date X" , dateX);
+//        
+//        String schoolXII = school2.getText();
+//        details.put("SchoolXII" , schoolXII);
+//        
+//        String dateXII = dateXIIField.getText();
+//        details.put("Date XII" , dateXII);
+//        
+//        String percentageXII = marks2.getText();
+//        details.put("PercentageXII" , percentageXII);
+//        
+//        String graduateCollege = college1.getText();
+//        details.put("GraduationCollege" , graduateCollege);
+//        
+//        String graduateUniversity = university1.getText();
+//        details.put("GraduateUniversity" , graduateUniversity);
+//        
+//        String graduationDate = dateCollege1Field.getText();
+//        details.put("Graduation date" , graduationDate);
+//        
+//        String graduateCGPA = cgpa1.getText();
+//        details.put("GraduationCGPA", graduateCGPA);
+//        
+//        String postGraduateCollege = college2.getText();
+//        details.put("PostGraduationCollege" , postGraduateCollege);
+//        
+//        String postGraduateUniversity = university2.getText();
+//        details.put("PostGraduateUniversity" , postGraduateUniversity);
+//        
+//        String postGraduationDate = dateCollege2Field.getText();
+//        details.put("Post Graduation date" , postGraduationDate);
+//        
+//        String postGraduateCGPA = cgpa2.getText();
+//        details.put("PostGraduateCGPA", postGraduateCGPA);
+//        
+//        String contactNo = contactNumber.getText();
+//        details.put("ContactNumber" , contactNo);
+//        
+//        String projectName1 = projectNameField1.getText();
+//        String projectDescription1 = projectDescriptionField1.getText();
+//        details.put("ProjectName1" , projectName1);
+//        details.put("projectDescription1" , projectDescription1);
+//        
+//        String projectName2 = projectNameField2.getText();
+//        String projectDescription2 = projectDescriptionField2.getText();
+//        details.put("ProjectName2" , projectName2);
+//        details.put("projectDescription2" , projectDescription2);
+//        
+//        String projectName3 = projectNameField3.getText();
+//        String projectDescription3 = projectDescriptionField3.getText();
+//        details.put("ProjectName3" , projectName3);
+//        details.put("projectDescription3" , projectDescription3);
+//        
+//        String projectName4 = projectNameField4.getText();
+//        String projectDescription4 = projectDescriptionField4.getText();
+//        details.put("ProjectName4" , projectName4);
+//        details.put("projectDescription4" , projectDescription4);
+//        
+//        String skills = skillsField.getText();
+//        details.put("Skills" , skills);
+//        
+//        return details;
+//    }
 }
-
-
-
-    }
