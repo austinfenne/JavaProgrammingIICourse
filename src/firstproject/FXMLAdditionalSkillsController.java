@@ -118,7 +118,7 @@ public class FXMLAdditionalSkillsController implements Initializable {
             Connection conn = dc.Connect();
             data = FXCollections.observableArrayList();
              //Execute query and store result in a resultset
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM Skills");
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM Skills WHERE USER_ID = " + db.getUser_ID());
           
             
             while (rs.next()) {
