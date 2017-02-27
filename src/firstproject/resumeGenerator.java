@@ -20,6 +20,10 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPCell;
 import java.io.FileOutputStream;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import javafx.fxml.FXML;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,9 +31,17 @@ import java.io.FileOutputStream;
  */
 public class resumeGenerator {
  
-    /**
-     *
-     */
+    private Database db = new Database();
+    private ResultSet rs = null;
+   
+ 
+    
+    
+    
+    resumeGenerator(){
+ 
+    }
+
 
     void createResume() throws IOException {
         Document resume = new Document();
@@ -195,8 +207,18 @@ public class resumeGenerator {
         } catch(DocumentException | FileNotFoundException e){
             System.out.println(e.getMessage());
         }
+        
+        
+        {
+
+        
         File file = new File("resume.pdf");
         Desktop.getDesktop().open(file);
         
     }
+
 }
+
+
+
+    }

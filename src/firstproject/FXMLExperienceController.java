@@ -7,25 +7,18 @@ package firstproject;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.temporal.TemporalField;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+
 
 /**
  * FXML Controller class
@@ -33,22 +26,7 @@ import javafx.stage.Stage;
  * @author fenne113
  */
 public class FXMLExperienceController implements Initializable {
-    
-    @FXML
-    private Label Position;
-    
-    @FXML
-    private Label Name_of_company;
-    
-    @FXML
-    private Label Description;
-    
-    @FXML
-    private Label Date_from;
-    
-    @FXML
-    private Label Date_to;
-    
+       
     @FXML
     private TextField Position_text; 
     
@@ -74,21 +52,23 @@ public class FXMLExperienceController implements Initializable {
     private DatePicker Date_to_picker;
     
     @FXML 
-    private Label error_label;
+    private Label CompanyName_err;
     
     @FXML
-    private Label error_label1;
+    private Label Position_err;
     
     @FXML
-    private Label error_label2;
+    private Label StartDate_err;
     
     @FXML
-    private Label error_label3;
+    private Label EndDate_err;
     
     @FXML
-    private Label error_label4;
+    private Label Description_err;
         Database db = new Database();
     public int ID = 0;
+   
+    //NextPage
     @FXML
     public void nextPage(ActionEvent e) throws IOException
     {     
@@ -99,6 +79,8 @@ public class FXMLExperienceController implements Initializable {
               
               
     }
+    
+    // Previous page
     @FXML
     public void PrevPage(ActionEvent e) throws IOException
     {     
@@ -106,65 +88,82 @@ public class FXMLExperienceController implements Initializable {
              
            
            
-//           ChangePage changePage = new ChangePage;
+//       ChangePage changePage = new ChangePage;
 //           pgChange = prevPage(e,pgNum);
     }
     
     @FXML
     private void AddButton (ActionEvent event) throws IOException   {
         
+        // get Date value
         LocalDate startDate = Date_from_picker.getValue();
         LocalDate endDate = Date_to_picker.getValue();
         
+       
         
+        //description validation
+        String description = Description_text.getText();
+        String descriptP = "\\d{200}(-\\d{0})?"; 
+        
+     
         boolean a = false;
 
+        //Postion error 
         if (Position_text.getText().isEmpty()){
-            error_label1.setText("Enter a value");//Postion    
+            Position_err.setText("Enter a value");  
         }
         else {
-            error_label1.setText("");
+            Position_err.setText("");
         }
         
-        
+        //Name of Company error
         if ( Name_of_Company_text.getText().isEmpty()){
-            error_label.setText("Enter a value");//Name of Company
+            CompanyName_err.setText("Enter a value");
         }
         else{
-            error_label.setText("");//Name of Company
+            CompanyName_err.setText(""); 
         }
         
+        //Description error
         if ( Description_text.getText().isEmpty()){
-            error_label4.setText("Enter a value");//Description
+            Description_err.setText("Enter a value");
         }
         else{
-            error_label4.setText("");//Description
+            Description_err.setText("");
         } 
         
+        //Date error
         if (startDate == null){
-            error_label2.setText("Clikc a Date");
+            StartDate_err.setText("Clikc a Date"); 
         }
         else if (startDate.compareTo(endDate)>0)
         {
-            error_label2.setText("End Date is before Start Date");
+            StartDate_err.setText("End Date is before Start Date"); 
         }
         else{
-            error_label2.setText("");
+            StartDate_err.setText("");
         }
         
+        //Date error
         if (endDate == null){
-            error_label3.setText("Click a Date");
+            EndDate_err.setText("Click a Date");
         }
         else {
-            error_label3.setText("");
+            EndDate_err.setText("");
         }
         
+        //description validation
+        if (descriptP.matches(descriptP) == false)
+        {
+           Description_err.setText("please enter proper variable"); 
+        }
         
+        if (description.matches(".*\\d.*")){ 
+            Description_err.setText("");
+            JOptionPane.showMessageDialog(null, "please enter proper variable in 500 letters(No numbers)");
+        }
         
-      
-        
-        
-
+        //
         if (!Position_text.getText().isEmpty() && !Name_of_Company_text.getText().isEmpty() && !Description_text.getText().isEmpty()){
            String query = "INSERT INTO WorkExp( Company, Position, FromDate, EndDate, Description, USER_ID) VALUES ("+
                    "'" +  Name_of_Company_text.getText() + "'," +
@@ -174,8 +173,20 @@ public class FXMLExperienceController implements Initializable {
                    "'" +  Description_text.getText() +     
                    "'," + ID + ");";
                    db.insertQuery(query);
+                   
+                   clear();
+                   JOptionPane.showMessageDialog(null, "You just add your information into the database");
         }
     }
+    @FXML
+        private void clear() //clear all fields
+        {
+            Position_text.clear();
+            Name_of_Company_text.clear();
+	    Description_text.clear();
+            Date_from_picker.getEditor().clear();
+            Date_to_picker.getEditor().clear();
+        }
     
      @FXML
     private void datefrompickerAction (ActionEvent event) throws IOException {
@@ -198,6 +209,7 @@ public class FXMLExperienceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) { 
+        
     }
 
       

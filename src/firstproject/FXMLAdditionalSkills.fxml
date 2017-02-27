@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLAdditionalSkillsController">
+   <children>
+      <Label layoutX="530.0" layoutY="45.0" text="1. Additional Skills" />
+      <Button fx:id="Add" layoutX="589.0" layoutY="268.0" mnemonicParsing="false" onAction="#AddButton" text="ADD" />
+      <Button fx:id="Next" layoutX="1076.0" layoutY="721.0" mnemonicParsing="false" onAction="#NextPage" text="NEXT" />
+      <Label layoutX="506.0" layoutY="394.0" text="2. Review your information" />
+      <Button fx:id="delete" layoutX="564.0" layoutY="592.0" mnemonicParsing="false" onAction="#deleteBtn" text="Delete" />
+      <TableView fx:id="tableUser" layoutX="432.0" layoutY="438.0" prefHeight="129.0" prefWidth="349.0">
+        <columns>
+          <TableColumn fx:id="columnSkill" prefWidth="348.0" text="SKILL" />
+        </columns>
+      </TableView>
+      <Label fx:id="skillerr" layoutX="506.0" layoutY="161.0" />
+      <Label fx:id="deleteerr" layoutX="420.0" layoutY="358.0" prefHeight="17.0" prefWidth="23.0" />
+      <TextField fx:id="txtSkills" layoutX="456.0" layoutY="115.0" prefHeight="120.0" prefWidth="292.0" />
+   </children>
+</AnchorPane>

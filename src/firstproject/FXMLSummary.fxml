@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstproject.FXMLSummaryController">
+   <children>
+      <Button fx:id="Next" layoutX="1017.0" layoutY="632.0" mnemonicParsing="false" onAction="#NextPage" text="NEXT" />
+      <TextArea fx:id="txt" layoutX="361.0" layoutY="462.0" prefHeight="125.0" prefWidth="558.0" promptText="Enter your resume summary, profile or objective." />
+      <ImageView fitHeight="38.0" fitWidth="36.0" layoutX="86.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/SE/star.PNG" />
+         </image>
+      </ImageView>
+      <Text layoutX="185.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start with your professional title Starting a resume summary with your professional title informs a recruiter that your resume is relevant e.g., Marketing Manager with 5+ years of experience." wrappingWidth="173.47000390291214" />
+      <Text layoutX="564.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add two or three achievements Add numbers and details. Focusing on results allows you to stand out and proves you’re the right candidate eg., Increased sales by 36% over 6 months." wrappingWidth="173.47000122070312" />
+      <Text layoutX="923.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tailor it to the job offer Find keywords from the job description, including skills and adjectives (dedicated, hardworking) and add them to your resume summary." wrappingWidth="154.13671875" />
+      <ImageView fitHeight="38.0" fitWidth="36.0" layoutX="496.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/SE/doc.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="36.0" layoutX="851.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/SE/glasses.PNG" />
+         </image>
+      </ImageView>
+      <Button fx:id="Add" layoutX="86.0" layoutY="632.0" mnemonicParsing="false" onAction="#AddBtn" text="ADD" />
+   </children>
+</AnchorPane>

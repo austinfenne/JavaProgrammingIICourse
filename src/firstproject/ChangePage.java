@@ -43,9 +43,19 @@ public class ChangePage
                 gotoPage(e, file);
                 break;
             case 5: //Education
-                file = "FXMLTemplateSelection";
+                file = "FXMLSummary";
                 setFile(file);
                 gotoPage(e, file);
+                break;
+            case 7: // Summary
+                file = "FXMLAdditionalSkills";
+                setFile(file);
+                gotoPage(e,file);
+                break;
+            case 8: // Skills
+                file = "FXMLTemplateSelection";
+                setFile(file);
+                gotoPage(e,file);
                 break;
    
         }
