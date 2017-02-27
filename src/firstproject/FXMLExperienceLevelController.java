@@ -71,16 +71,16 @@ public class FXMLExperienceLevelController implements Initializable {
        {
 
               
-            
+            if (!"".equals(experience)){
            
             String query = "INSERT INTO level (EXPERIENCE,USER_ID) VALUES (" + "'" + experience +  "',"+ID+");";
            
-db.insertQuery(query);
+            db.insertQuery(query);
 
-ChangePage pgChange = new ChangePage();
-pgChange.nextPage(e, pgNum);
+            ChangePage pgChange = new ChangePage();
+            pgChange.nextPage(e, pgNum);
 
-          
+            }
            
        }
 
